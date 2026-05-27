@@ -1,49 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-    <title>Chyi Ricketts Website</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chyi Ricketts Website</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    
-  <!-- Target element for Vanta background -->
-  <div id="vanta-bg"></div>
 
-  <!-- Your main content -->
-  <div class="content">
+  <!-- Canvas background -->
+  <canvas id="shapes"></canvas>
+
+  <!-- Main content -->
+  <main class="content">
     <h2>Hello There!</h2>
     <h1>I'm Chyi Ricketts</h1>
 
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa maiores distinctio possimus rem, dolore numquam natus omnis ad vitae necessitatibus ab. Quidem hic odio, necessitatibus repudiandae sed ipsum voluptas? Quos!</p>
+    <p>
+      Bioinformatician interested in extracting insight from complex biological
+      data through computational analysis, visualization, and scientific storytelling.
+    </p>
 
+  </main>
 
-    <img src="DKU Headshot without background.png">
-
-  </div>
-
-  <!-- Include Three.js and Vanta.js -->
-  <script src="three.r134.min.js"></script>
-  <script src="vanta.cells.min.js"></script>
-  
-  <!-- Initialize VANTA -->
-  <script>
-    VANTA.CELLS({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00
-    });
-  </script>
-
+  <script src="lines.js"></script>
 </body>
-
-<footer>
-</footer>
-
 </html>

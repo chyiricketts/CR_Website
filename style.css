@@ -17,3 +17,16 @@ body, html {
     font-family: Arial, sans-serif;
     text-align: center;
   }
+
+body {
+    margin: 0;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #0f1724 0%,
+            #09111d 40%,
+            #05080f 100%
+        );
+}
