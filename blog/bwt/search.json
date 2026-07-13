@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "The Burrows-Wheeler Transform",
     "section": "",
-    "text": "The Burrows-Wheeler Transform (BWT) is a remarkable algorithm that rearranges a string into a form that compresses much more efficiently. It is the backbone of bzip2 and powers DNA sequence alignment tools like Bowtie and BWA.\nIn this article, we build it from scratch — interactively."
+    "text": "☰\n\n    \n    \n      Home\n      Education\n      Experience\n      Projects\n      Contact"
   },
   {
     "objectID": "index.html#introduction",
     "href": "index.html#introduction",
     "title": "The Burrows-Wheeler Transform",
-    "section": "",
-    "text": "The Burrows-Wheeler Transform (BWT) is a remarkable algorithm that rearranges a string into a form that compresses much more efficiently. It is the backbone of bzip2 and powers DNA sequence alignment tools like Bowtie and BWA.\nIn this article, we build it from scratch — interactively."
+    "section": "Introduction",
+    "text": "Introduction\nThe Burrows-Wheeler Transform (BWT) is a remarkable algorithm that rearranges a string into a form that compresses much more efficiently. It is the backbone of bzip2 and powers DNA sequence alignment tools like Bowtie and BWA.\nIn this article, we build it from scratch — interactively."
   },
   {
     "objectID": "index.html#the-rotation-matrix",
@@ -25,6 +25,6 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "☰\n\n    \n    \n      Home\n      Education\n      Experience\n      Projects\n      Contact\n    \n\n    \n    \n      \n        \n      \n\n      \n        \n      \n\n      \n        \n      \n\n      \n        \n      \n\n      \n        \n      \n    \n\n  \nAbout this site"
   }
 ]
