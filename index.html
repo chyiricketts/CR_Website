@@ -1,28 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chyi Ricketts Website</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>Chyi Ricketts Website</title>
+    <link rel="stylesheet" href="newpagestyle.css">
+    <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
 </head>
+
 <body>
 
-  <!-- Canvas background -->
-  <canvas id="shapes"></canvas>
+  
+<header>
+  <nav class="navigation">
+    <div class="nav-container">
 
-  <!-- Main content -->
-  <main class="content">
-    <h2>Hello There!</h2>
-    <h1>I'm Chyi Ricketts</h1>
+      <!-- Mobile toggle -->
+      <div class="nav-mobile" id="nav-toggle">☰</div>
 
-    <p>
-      Bioinformatician interested in extracting insight from complex biological
-      data through computational analysis, visualization, and scientific storytelling.
-    </p>
+      <!-- LEFT LINKS -->
+      <ul class="nav-left">
+        <li><a href="">Home</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#work-experience">Experience</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- RIGHT ICONS -->
+      <div class="nav-right">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <img src="logoimg/sun.svg" class="nav-icon" />
+        </button>
+
+        <a href="mailto:chyi.ricketts@gmail.com">
+          <img src="logoimg/email.svg" class="nav-icon">
+        </a>
+
+        <a href="https://www.linkedin.com/in/chyi-ricketts/">
+          <img src="logoimg/linkedin.svg" class="nav-icon">
+        </a>
+
+        <a href="https://github.com/chyiricketts">
+          <img src="logoimg/github.svg" class="nav-icon">
+        </a>
+
+        <a href="#">
+          <img src="logoimg/search.svg" class="nav-icon">
+        </a>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+
+  <main>
+
+    <canvas id="shapes"></canvas>
+    
+    <div class = "center-all">
+        
+        <div class = "title-text">
+            <h1>Chyi Ricketts</h1>
+            <p>Computational Biologist</p>        
+        </div>
+
+        <div class="about-section">
+          <img src="images/DKU Headshot.jpg" id="about-img">
+          <div class="about-text">
+            <h2>About Me</h2>
+            <p>Hi! My name is Chyi Ricketts and I'm a <b>computational biologist</b> currently enrolled as a postgraduate researcher in Cancer Informatics at Imperial College London. I am most passionate about exploring the intersection of these two complex and highly interconnected fields: Biology and Computer Science. </p>
+          </div>
+        </div>
+    </div>
+
+    <section class="info-section" id="education">
+      <div class="info-inner">
+        <h2>Education</h2>
+
+        <div class="info-item">
+          <h3>Imperial College London</h3>
+          <p class="info-meta">September 2025 - September 2026</p>
+          <p>Master of Research: Cancer Informatics</p>
+          <p>Relevant Coursework:</p>
+          <ul>
+            <li>Bioinformatics and Machine Intelligence</li>
+            <li>Artificial Intelligence for Drug Discovery</li>
+          </ul>
+        </div>
+
+        <div class="info-item">
+          <h3>Duke Kunshan University</h3>
+          <p class="info-meta">August 2021 - May 2025</p>
+          <p>Dual degree from Duke University and Duke Kunshan University</p>
+          <p>Major: Genetics and Genomics</p>
+        </div>
+      </div>
+    </section>    
+
+    <section class="info-section" id = "work-experience">
+        <div class="info-inner">
+          <h2>Experience</h2>
+
+          <div class="info-item">
+            <h3>Postgraduate Researcher @ Ballester Lab</h3>
+            <p class="info-meta">Imperial College London • December 2025 – Present </p>
+            <ul>
+              <li>Applied Knock-in Tagging methods to examine protein participation in nutrient packaging/transport in the interstitial lumen</li>
+              <li>Validated constructs via embryo injection, electrophoresis gels, PCR, and fluorescent microscopy screening</li>
+            </ul>
+          </div>
+
+
+          <div class="info-item">
+            <h3>Undergraduate Researcher @ Bagnat Lab</h3>
+            <p class="info-meta">Duke University • April 2022 – July 2022</p>
+            <ul>
+              <li>Applied Knock-in Tagging methods to examine protein participation in nutrient packaging/transport in the interstitial lumen</li>
+              <li>Validated constructs via embryo injection, electrophoresis gels, PCR, and fluorescent microscopy screening</li>
+            </ul>
+          </div>
+
+          <div class="info-item">
+            <h3>Student Research Scholar @ Huang Lab</h3>
+            <p class="info-meta">Duke Kunshan University • May 2023 – May 2025</p>
+            <ul>
+              <li>
+                Conducted quantitative benchmarking of 8 image analysis tools, including ML/DL segmentation methods
+              </li>
+              <li>
+                Developed a web-based tool for interactive visualization and analysis of post-segmentation image outputs
+              </li>
+              <li>
+                Trained models and evaluated segmentation performance using custom computational metrics
+              </li>
+              <li>
+                Authored and submitted a successful grant proposal, securing computing resources for large-scale image analysis
+              </li>
+              <li>
+                Performed supporting RNAi-based gene knockdown experiments in HeLa cells for functional validation
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-section" id="certs">
+        <div class="info-inner">
+          <h2>Certifications</h2>
+
+          <div class="info-item">
+            <h3>Data Science & Statistics</h3>
+            <ul>
+              <li><a href="images/Datacamp-ExperimentalDesign.pdf">Experimental Design in R</a></li>
+              <li><a href="images/Datacamp-ExploratoryDataAnalysis.pdf">Exploratory Data Analysis in R</a></li>
+              <li><a href="images/Datacamp-HypothesisTesting.pdf">Hypothesis Testing in R</a></li>
+              <li><a href="images/Datacamp-IntrotoRegression.pdf">Introduction to Regression in R</a></li>
+              <li><a href="images/Datacamp-IntermediateRegression.pdf">Intermediate to Regression in R</a></li>
+              <li><a href="images/Datacamp-IntrotoR.pdf">Introduction to R</a></li>
+              <li><a href="images/Datacamp-IntrotoTidyverse.pdf">Introduction to the Tidyverse</a></li>
+              <li><a href="images/Datacamp-IntroVisggplot2.pdf">Introduction to Data Visualization with ggplot2</a></li>
+              <li><a href="images/Datacamp-IntermediateVisggplot2.pdf">Intermediate Data Visualization with ggplot2</a></li>
+              <li><a href="images/Datacamp-LinearRegression.pdf">Inference for Linear Regression in R</a></li>
+            </ul>
+          </div>
+
+          <div class="info-item">
+            <h3>Machine Learning & Mathematics</h3>
+            <ul>
+              <li><a href="images/Coursera-MathForML.pdf">Mathematics for Machine Learning Specialization</a></li>
+              <ul>
+                <li><a href="images/Coursera-LinearAlgebra.pdf">Mathematics for Machine Learning: Linear Algebra</a></li>
+                <li><a href="images/Coursera-Multivariate.pdf">Mathematics for Machine Learning: Multivariate Calculus</a></li>
+                <li><a href="images/Coursera-PCA.pdf">Mathematics for Machine Learning: Multivariate Calculus</a></li>
+              </ul>
+            </ul>
+          </div>
+
+          <div class="info-item">
+            <h3>Cloud Computing & DevOps</h3>
+            <ul>
+              <li><a href="images/Datacamp-AWS.pdf">AWS Concepts</a></li>
+              <li>In Progress: AWS Certified Developer</li>
+              <li>In Progress: Docker Fundamentals</li>
+            </ul>
+          </div>
+
+
+          <div class="info-item">
+            <h3>Software Engineering & Databases</h3>
+            <ul>
+              <li><a href="images/Datamp-IntroGit.pdf">Intro to Git</a></li>
+              <li><a href="images/Datacamp-IntermediateGit.pdf">Intermediate Git</a></li>
+              <li><a href="images/Datacamp-SQL.pdf">Intro to SQL</a></li>
+              <li><a href="images/Datacamp-IntermediateSQL.pdf">Intermediate SQL</a></li>
+              <li><a href="images/Datacamp-ShinyinR.pdf">Building Web Applications with Shiny in R</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </section>   
 
   </main>
 
-  <script src="lines.js"></script>
+
+  <footer>
+      <p>© 2026 Chyi Ricketts</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/light-mode.js"></script>
+  <script src="js/canvas-animate.js"></script>
+
 </body>
+
 </html>

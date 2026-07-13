@@ -1,8 +1,8 @@
 canvas = document.getElementById("shapes");
 let context = canvas.getContext("2d");
 let shapesArr = new Array();
-let shapeInitialDensity = 0.04;
-let spawnRate = 0.03;
+let shapeInitialDensity = 0.10;
+let spawnRate = 0.10;
 var startShapes = 0;
 
 window.onload = function () {
@@ -17,14 +17,13 @@ window.onload = function () {
 
 window.onresize = resize;
 
-// why does it have to resize every time?
+// Resizes when the window resizes
 function resize() {
   // Set up canvas
   // canvas.height = window.innerHeight * 0.8;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
-
 
 
 function drawShape(h) {
@@ -96,7 +95,6 @@ function drawBonds() {
             let dist = Math.sqrt(dx * dx + dy * dy);
 
             if(dist < 120) {
-
                 let alpha =
                     (1 - dist / 120) * 0.2;
 
@@ -196,8 +194,8 @@ function animate() {
     let shape = shapesArr[i];
     drawShape(shape);
     // making shape speed slower
-    //let speed = (1 - shape.depth * shape.depth) / 3 + 0.1;
-    let speed = (1 - shape.depth) * 0.3 + 0.05;
+    let speed = (1 - shape.depth * shape.depth) / 3 + 0.05;
+    //let speed = (1 - shape.depth) * 0.3 + 0.10;
     shape.x += speed * Math.cos(shape.dir);
     shape.y -= speed * Math.sin(shape.dir);
 
