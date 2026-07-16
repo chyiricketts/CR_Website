@@ -1,0 +1,188 @@
+/* Navigation Bar */
+
+/* navbar.css specifically for quarto page */
+body.quarto-page {
+  padding-top: 80px;
+}
+
+/* Base nav */
+.navigation {
+
+  height: 70px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 1000;
+
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+
+  box-shadow: var(--border-shadow);
+  border-bottom: 1px solid var(--border);
+
+  transition: transform 0.3s ease,
+              background 1.5s ease, 
+              border-color 1.5s ease;
+
+}
+
+/* hidden state */
+.navigation.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* Layout */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 70px;
+
+  padding: 0 32px;
+
+  box-sizing: border-box;
+}
+
+/* Icons */
+.nav-icon {
+  width: 22px;
+  height: 22px;
+
+  opacity: 0.75;
+  transition: 0.2s ease;
+
+  filter: brightness(0) invert(1);
+
+  transition: color 1s ease, filter 1s ease, opacity 1s ease;
+}
+
+
+/* Links */
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-left {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-left li, .nav-right li {
+  position: relative;
+}
+
+.nav-left a,
+.nav-right a {
+  color: var(--text_invert);
+  text-decoration: none;
+  padding: 10px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  transform: translateY(-2px) scale(1.05);
+  text-shadow: 0 0 8px var(--text-glow)
+}
+
+.nav-icon {
+  width: 22px;
+  height: 22px;
+  opacity: 0.75;
+  transition: all 0.2s ease;
+  filter: brightness(0) invert(1);
+}
+
+.nav-right a:hover .nav-icon {
+  opacity: 1;
+  transform: scale(1.2);
+  filter: brightness(0) invert(1)
+          drop-shadow(0 0 8px var(--text-glow));
+}
+
+.nav-mobile {
+  display: none;
+
+  color: var(--text);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+
+  .nav-mobile {
+    display: block;
+  }
+
+  .nav-container {
+    position: relative;
+  }
+
+  .nav-left {
+    display: none;
+
+    flex-direction: column;
+
+    position: absolute;
+    top: 70px;
+    left: 0;
+
+    width: 100%;
+
+    background: var(--background);
+
+    padding: 20px 30px;
+    box-sizing: border-box;
+  }
+
+  .nav-left.active {
+    display: flex;
+  }
+
+  /* KEEP ICONS VISIBLE */
+  .nav-right {
+    display: flex;
+  }
+}
+
+
+
+
+
+
+/* light mode icon */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle .nav-icon {
+  width: 22px;
+  height: 22px;
+  transition: 0.3s ease;
+}
+
+.theme-toggle:hover .nav-icon {
+  opacity: 1;
+  transform: rotate(20deg) scale(1.2);
+  filter: brightness(0) invert(1)
+        drop-shadow(0 0 8px var(--text-glow));
+}
