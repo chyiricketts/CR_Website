@@ -2,13 +2,12 @@
 
 /* navbar.css specifically for quarto page */
 body.quarto-page {
-  padding-top: 80px;
+  padding-top: 80px !important;
 }
 
-/* Base nav */
+/* navbar.css - scoped ONLY to navigation */
 .navigation {
-
-  height: 70px;
+  height: 70px !important;
 
   position: fixed;
   top: 0;
