@@ -19,7 +19,7 @@ body {
 
     margin: 0;
     overflow-x: hidden;
-    color: var(--text);
+    color: var(--text); /* switches with theme */
 
     background:
         radial-gradient(
@@ -30,6 +30,37 @@ body {
         );
 
     transition: background 1.5s ease, color 1.5s ease;
+}
+
+body {
+  position: relative;
+  background: radial-gradient(
+    circle at center,
+    var(--background) 0%,
+    var(--gradient_1) 40%,
+    var(--gradient_2) 100%
+  );
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background: radial-gradient(
+    circle at center,
+    #ffffff 0%,
+    #d8f4ff 40%,
+    #bfd4ff 100%
+  );
+
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+body.light-theme::before {
+  opacity: 1;
 }
 
 
@@ -119,27 +150,22 @@ body {
 /* about Section */
 
 .about-section {
-    width: 90%;
-    max-width: 900px;
-    margin-bottom: 8rem;
-    padding: 2rem;
-    backdrop-filter: blur(6px);
-    background: var(--background);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-}
-
-.about-section {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: 30px;
-
   align-items: start;
-
   width: 90%;
   max-width: 900px;
-
   margin: 20px auto;
+  margin-bottom: 8rem;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: background 1.5s ease, 
+              color 1.5s ease, 
+              border-color 1.5s ease;
 }
 
 #about-img {
@@ -199,6 +225,10 @@ body {
 
   position: relative;
   z-index: 2;
+
+  transition: background 1.5s ease, 
+              color 1.5s ease, 
+              border-color 1.5s ease;
 }
 
 .info-inner {
@@ -261,6 +291,10 @@ footer {
     border-top: 1px solid var(--border);
     box-shadow: var(--border-shadow);
     color: var(--text);
+
+    transition: background 1.5s ease, 
+              color 1.5s ease, 
+              border-color 1.5s ease;
 }
 
 footer p {

@@ -1,7 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
 }
 
 :root {
@@ -12,8 +15,8 @@
 
   --surface: rgba(20, 20, 25, 0.7);
 
-  --text: #ffffff;
-  --text_invert: #ffffff; /*inverted in light mode*/
+  --text: #ffffff;          /* dark mode: white text */
+  --text_invert: #ffffff;   /* dark mode: also white (navbar links) */
   --muted-text: rgba(255, 255, 255, 0.65);
 
   /* Accent system */
@@ -27,24 +30,15 @@
   --glow: rgba(120, 200, 255, 0.6);
 }
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
 .light-theme {
     /* Core theme */
   --background: #ffffff;
-  --gradient_1: #d8f4ff;
+  --gradient_1: #ffffff;
   --gradient_2: #bfd4ff;
   --surface: #5a5a5d;
 
-  --text: #0b1220;
-  --text_invert: #ffffff
+  --text: #0b1220;          /* light mode: dark text */
+  --text_invert: #ffffff;   /* light mode: STAYS white (navbar on dark surface) */
   --muted-text: rgba(11, 18, 32, 0.65);
 
   /* Accent system */
@@ -55,17 +49,5 @@
   --border-shadow: 0 0 20px rgba(120, 200, 255, 0.08);
 
   /* Glow system (for canvas / atoms / bonds) */
-  --glow: rgba(120, 200, 255, 0.6);
-}
-
-.light-theme .nav-icon {
-  transition: all 0.2s ease;
-  filter: brightness(0) invert(0);
-}
-
-.light-theme a:hover .nav-icon {
-  opacity: 1;
-  transform: scale(1.2);
-  filter: brightness(0) invert(0)
-          drop-shadow(0 0 8px var(--text-glow));
+  --glow: rgba(30, 60, 120, 0.6);
 }

@@ -23,8 +23,8 @@ body.quarto-page {
   box-shadow: var(--border-shadow);
   border-bottom: 1px solid var(--border);
 
-  transition: transform 0.3s ease,
-              background 1.5s ease, 
+  transition: background 1.5s ease, 
+              color 1.5s ease, 
               border-color 1.5s ease;
 
 }
@@ -114,7 +114,7 @@ body.quarto-page {
 .nav-mobile {
   display: none;
 
-  color: var(--text);
+  color: var(--text_invert);
   font-size: 28px;
   cursor: pointer;
 }
