@@ -1,18 +1,9 @@
 canvas = document.getElementById("shapes");
 let context = canvas.getContext("2d");
 let shapesArr = new Array();
-let shapeInitialDensity = 0.30;
-let spawnRate = 0.30;
-const speedMultiplier = 0.5;  // ← tune this one value
+let shapeInitialDensity = 0.10;
+let spawnRate = 0.10;
 var startShapes = 0;
-
-let mouse = { x: -9999, y: -9999 }; // start offscreen
-
-window.addEventListener('mousemove', function(e) {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-  console.log(mouse.x, mouse.y);
-});
 
 window.onload = function () {
   resize();
@@ -34,29 +25,12 @@ function resize() {
   canvas.height = window.innerHeight;
 }
 
-// Get color themes from variables.css
-function getThemeColors() {
-  const style = getComputedStyle(document.body);
-  return {
-    glow: style.getPropertyValue('--glow').trim(),
-    atomColor: style.getPropertyValue('--glow').trim(),
-    bondColor: style.getPropertyValue('--glow').trim(),
-  };
-}
 
-// get glow for length
-function glowWithAlpha(glowVar, alpha) {
-  const match = glowVar.match(/[\d.]+,\s*[\d.]+,\s*[\d.]+/);
-  if (!match) return `rgba(120,200,255,${alpha})`;
-  return `rgba(${match[0]}, ${alpha})`;
-}
-
-
-function drawShape(h, colors) {
+function drawShape(h) {
 
   if(h.type === "atom") {
 
-    let radius = (1 - h.depth) * 3;
+    let radius = (1 - h.depth) * 3 + 2;
 
     context.beginPath();
 
@@ -68,9 +42,13 @@ function drawShape(h, colors) {
         Math.PI * 2
     );
 
-    context.fillStyle = glowWithAlpha(colors.glow, 0.9);
-    context.shadowColor = glowWithAlpha(colors.glow, 1);
+    context.fillStyle =
+        "rgba(140,220,255,0.9)";
+
     context.shadowBlur = 15;
+
+    context.shadowColor =
+        "rgba(140,220,255,1)";
 
     context.fill();
 
@@ -102,7 +80,7 @@ function drawShape(h, colors) {
 }
 
 // added for bonds
-function drawBonds(colors) {
+function drawBonds() {
 
     for(let i = 0; i < shapesArr.length; i++) {
 
@@ -116,22 +94,24 @@ function drawBonds(colors) {
 
             let dist = Math.sqrt(dx * dx + dy * dy);
 
-            if(dist < 60) {   // CONTROL FOR THE BOND DISTANCE
+            if(dist < 120) {
                 let alpha =
-                    (1 - dist / 60) * 0.2;
+                    (1 - dist / 120) * 0.2;
 
                 context.beginPath();
 
                 context.moveTo(a.x, a.y);
                 context.lineTo(b.x, b.y);
 
-                context.strokeStyle = glowWithAlpha(colors.bondColor, alpha);
+                context.strokeStyle =
+                    `rgba(120,200,255,${alpha})`;
 
                 context.lineWidth = 1;
 
                 context.shadowBlur = 8;
 
-                context.shadowColor = glowWithAlpha(colors.glow, 0.8);
+                context.shadowColor =
+                    "rgba(120,200,255,0.8)";
 
                 context.stroke();
 
@@ -199,8 +179,6 @@ window.requestAnimFrame = (function (callback) {
 })();
 
 function animate() {
-  const colors = getThemeColors();  
-
   if (Math.random() < spawnRate) spawnShape(true);
 
   // Clear
@@ -209,14 +187,15 @@ function animate() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.restore();
 
-  drawBonds(colors);
+  drawBonds();
 
   // Draw shapes
   for (var i = 0; i < shapesArr.length; i++) {
     let shape = shapesArr[i];
-    drawShape(shape, colors);
+    drawShape(shape);
     // making shape speed slower
-    let speed = ((1 - shape.depth * shape.depth) / 3 + 0.05) * speedMultiplier;
+    let speed = (1 - shape.depth * shape.depth) / 3 + 0.05;
+    //let speed = (1 - shape.depth) * 0.3 + 0.10;
     shape.x += speed * Math.cos(shape.dir);
     shape.y -= speed * Math.sin(shape.dir);
 
@@ -231,19 +210,6 @@ function animate() {
     ) {
       shapesArr.splice(i, 1);
       i--;
-    }
-
-    const repelRadius = 200;  // how close before nudge kicks in
-    const repelStrength = 0.8; // how hard the push is
-
-    let mdx = shape.x - mouse.x;
-    let mdy = shape.y - mouse.y;
-    let mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-
-    if (mdist < repelRadius && mdist > 0) {
-      let force = (1 - mdist / repelRadius) * repelStrength;
-      shape.x += (mdx / mdist) * force;
-      shape.y += (mdy / mdist) * force;
     }
   }
 
