@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chyi Ricketts">
+<meta name="dcterms.date" content="2026-08-27">
 
-<title>Cellular Segmentation – Blog</title>
+<title>Target Specific Scoring Functions – Blog</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -89,7 +90,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#practical-application" id="toc-practical-application" class="nav-link" data-scroll-target="#practical-application">Practical Application</a></li>
+  <li><a href="#what-i-did" id="toc-what-i-did" class="nav-link" data-scroll-target="#what-i-did">What I did</a></li>
+  <li><a href="#what-i-found" id="toc-what-i-found" class="nav-link" data-scroll-target="#what-i-found">What I found</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#read-my-full-work" id="toc-read-my-full-work" class="nav-link" data-scroll-target="#read-my-full-work">Read my full work!</a></li>
   </ul>
 </nav>
@@ -118,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
 
       <li><a href="https://chyiricketts.onrender.com/#work-experience">Experience</a></li>
 
-      <li><a href="https://chyiricketts.onrender.com/blog/">Blog</a></li>
+      <li><a href="https://chyiricketts.onrender.com/blog/">Projects</a></li>
 
       <li><a href="https://chyiricketts.onrender.com/contact.html">Contact</a></li>
 
@@ -264,8 +268,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Cellular Segmentation</h1>
-<p class="subtitle lead">My Signature Work Project</p>
+<h1 class="title">Target Specific Scoring Functions</h1>
+<p class="subtitle lead">A new way to approach binding affinity prediction</p>
   <div class="quarto-categories">
     <div class="quarto-category">Papers</div>
     <div class="quarto-category">Bioinformatics</div>
@@ -286,7 +290,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
+      <p class="date">August 27, 2026</p>
     </div>
   </div>
   
@@ -300,17 +304,43 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>My Signature Work benchmarked multiple state-of-the-art segmentation software using my own confocal microscopy images of HeLa cells stained with hoechst and BODIPY</p>
+<p>Binding affinity prediction for drug discovery has been one of the most complex and compelling tasks within drug discovery. Since the 1960s, the field has traversed through many iterations of algorithms such as force-field based, empirical, knowledge-based, alchemical, docking-based, endpoint, and fast-forward to today, the field is dominated by ML methods. The ongoing question still remains: How do we build a more accurate scoring function at the scale necessary for drug discovery? Currently, estimates suggest that at least $1 billion USD and 10+ years are required to get from a protein target to a market drug, and most candidates fail before ever reaching a clinical trial. Nevertheless, this task is being tackled by researchers across the globe.</p>
+<!-- Could potentially add the interactive ribbon plot of drug discovery failures-->
 </section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>This study focuses on optimizing the efficiency of image analysis in scientific research through three main deliverables: an assessment of existing cellular segmentation software, an original web-based application for segmentation visualization, and a fine-tuned vision language model, BLIP-2. Several segmentation software were assessed through a benchmark analysis of segmentation accuracy following a literature review and a qualitative analysis to ultimately select Cellpose for integration with the web-based application. This user-friendly web graphical user interface (GUI) responds to user input to view image files by selecting pre-identified regions of interest (ROI) and corresponding extraction of features. This study establishes a recommended pipeline for segmenting masks with Cellpose for pixel-wise, accurate segmentation and highlighting ROIs with tools provided by the web-application. The fine-tuned BLIP-2 model utilizes its multimodal translational capabilities to enable subsequent automated captioning on a large set of images. This transformation into language data will allow any large language model (LLM) to identify patterns within the image set. This comprehensive pipeline traces the transformation of raw image data into processed language formats, leveraging the strengths of deep learning algorithms. This will provide biological research scientists with an efficient method for identifying trends in complex datasets without the need of unpacking data with complex software coding.</p>
+<section id="practical-application" class="level2">
+<h2 class="anchored" data-anchor-id="practical-application">Practical Application</h2>
+<p>My Master’s research focused on one aspect of this problem: building scoring functions for specific targets. One of the two main applications of scoring functions is lead optimization, where a protein target and typically a promising ligand scaffold has already been identified. Here, iterative rounds of chemical modifications of the drug candidate are conducted for other desirable drug characteristics (stability, low toxicity, etc.) while binding affinity is continuously optimized. The current landscape of scoring functions is dominated by generic models, built to generalize across all protein-ligand complexes rather than tuned to the structure-activity relationship (SAR) of a particular target. My thesis hypothesizes that for certain model architectures and featurization schemes, scoring functions built on ‘more relevant data’ rather than just ‘more data’ can improve performance for this more specific task.</p>
+</section>
+<section id="what-i-did" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-did">What I did</h2>
+<p>The core of my project counters a prevailing assumption in modern machine learning where scaling up data results in better performance. My results suggest that, for this problem, the relevance and likely quality of training data can matter just as much, if not more, than volume.</p>
+<p>To wrap my project up simply, I compare multiple featurization schemes and learning algorithms of which two are investigated in depth: ECIF::RF, a 1D count vector representation with a classic tree-based model, and AEV-PLIG::GATv2, a complex radial atomic feature representation in a graph neural network. Using these models and five candidate protein targets, I was able to observe how training these models with more structurally relevant data (more closely related to the target) is able to outperform a generic model by both ranking and identifying the strongest binders (Overlap @ K).</p>
+</section>
+<section id="what-i-found" class="level2">
+<h2 class="anchored" data-anchor-id="what-i-found">What I found</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="MRes_Project_scatter.png" class="img-fluid figure-img"></p>
+<figcaption>Experimental-vs-Predicted Scatterplot</figcaption>
+</figure>
+</div>
+<p>In this figure, I show the experimental versus predicted dG values of the generic AEV-PLIG::GATv2 model versus the target-specific ECIF::RF model and best family-specific ECIF::RF models. These plots highlight an important distinction between absolute prediction accuracy and ranking perofmrance. Generic AEV‐PLIG::GATv2 generally follows the overall experimental affinity trend more closely, while ECIF::RF models consistently show a compressed predicted affinity range. Despite this, ECIF::RF achieves stronger Kτ and Overlap @ 5 for four of five proteins, indicating better preservation of relative compound ordering even when absolute prediction accuracy is lower.</p>
+<p>PFKFB3 provides the clearest illustration of this distinction (panels c, h, m). Generic AEV‐PLIG::GATv2 achieves the lowest RMSE of 1.135 kcal/mol but recovers none of the five strongest binders and only three of the strongest ten (Overlap @ 5 = 0.0, Overlap @ 10 = 0.3), whereas the best family‐specific ECIF::RF model (FS 0.3) has a substantially higher RMSE of 1.760 kcal/mol yet correctly identifies two of the five strongest binders and seven of the ten (Overlap @ 5 = 0.4, Overlap @ 10 = 0.7) despite a visibly flattened prediction range.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>What I take from this isn’t that target-specific models are simply better, it’s that “better” depends on what you’re actually optimizing for. In lead optimization, the real task is deciding which handful of candidates are worth testing next, and that’s a ranking problem, not a pure accuracy one. That’s exactly where the target- and family-specific models earned their keep, even though the effect wasn’t uniform across every target or metric. If there’s a bigger takeaway here, it’s that the data you train a model on should match the question you’re asking of it, not just the pile of data you happen to have.</p>
 </section>
 <section id="read-my-full-work" class="level2">
 <h2 class="anchored" data-anchor-id="read-my-full-work">Read my full work!</h2>
-<blockquote class="blockquote">
-<p>https://chyiricketts.onrender.com/papers/cr353_Ricketts_2025_Huang_SWPaper.pdf</p>
-</blockquote>
+<p><a href="https://chyiricketts.onrender.com/papers/cr275_Ricketts_2026_Ballester_MResPaper.pdf">Target-Specific Binding Affinity Prediction-based Scoring Functions for Lead Optimization</a></p>
+<p>Additional code is available on my <a href="https://github.com/chyiricketts/Target-Specific_BAP_Prediction">GitHub</a> \</p>
+<p>Additional reading:</p>
+<ul>
+<li><a href="https://doi.org/10.1021/acs.jmedchem.5c03222">The Affinity Advantage</a> does a great job on describing the importance of lead optimization and optimizing for binding affinity</li>
+<li><a href="https://doi.org/10.1038/s42004-025-01428-y">Narrowing the gap between ML SFs and FEP…</a> is the basis of generic AEV-PLIG::GATv2 used in my work and a state-of-the-art GNN</li>
+<li><a href="https://doi.org/10.1038/s42004-023-01019-9">The Maximal and Current Accuracy of Rigorous Protein-Ligand BFE calculations</a> provides the largest publicly available dataset of proteins and congeneric series of small molecules with FEP+ predictions for evaluation</li>
+</ul>
 
 
 </section>

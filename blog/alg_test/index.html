@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chyi Ricketts">
-<meta name="dcterms.date" content="2025-03-16">
+<meta name="dcterms.date" content="2025-07-10">
 
-<title>Target Specific Scoring Function – Blog</title>
+<title>Algorithm Test – Blog</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,35 +72,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../css/variables.css">
 <link rel="stylesheet" href="../../css/navbar.css">
@@ -119,8 +90,6 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#read-my-full-work" id="toc-read-my-full-work" class="nav-link" data-scroll-target="#read-my-full-work">Read my full work!</a></li>
   </ul>
 </nav>
     </div>
@@ -148,7 +117,7 @@ window.Quarto = {
 
       <li><a href="https://chyiricketts.onrender.com/#work-experience">Experience</a></li>
 
-      <li><a href="https://chyiricketts.onrender.com/blog/">Blog</a></li>
+      <li><a href="https://chyiricketts.onrender.com/blog/">Projects</a></li>
 
       <li><a href="https://chyiricketts.onrender.com/contact.html">Contact</a></li>
 
@@ -294,11 +263,11 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Target Specific Scoring Function</h1>
-<p class="subtitle lead">A new way to approach binding affinity prediction</p>
+<h1 class="title">Algorithm Test</h1>
+<p class="subtitle lead">A test to see how it works</p>
   <div class="quarto-categories">
-    <div class="quarto-category">Papers</div>
-    <div class="quarto-category">Bioinformatics</div>
+    <div class="quarto-category">Algorithms</div>
+    <div class="quarto-category">Testing</div>
   </div>
   </div>
 
@@ -316,7 +285,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 16, 2025</p>
+      <p class="date">July 10, 2025</p>
     </div>
   </div>
   
@@ -330,17 +299,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>My Masters work focused on Target-specific scoring functions, comparing the output of graph neural networks and tree/kernel learning algorithms.</p>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Accurate prediction of protein–ligand binding affinity is a critical component of lead optimization in drug discovery, where small chemical modifications to a lead compound can result in meaningful changes in biological activity. While modern machine-learning scoring functions (SFs) perform well across diverse protein targets, they are often designed to prioritize generalization rather than target-specific performance. However, lead optimization is typically a target-focused problem involving congeneric series of compounds that differ by small structural modifications. This raises the question of whether target-specific models may provide improved performance compared to generalizable approaches, and whether the relevance of training data is as important as its quantity. This study investigates the tradeoff between dataset size and data relevance by developing and evaluating target-specific and family-specific binding affinity prediction (BAP) models for five cancer-related proteins: MCL1, SYK, HIF2<span class="math inline">\(\alpha\)</span>, PFKFB3, and MAPK14. Multiple machine-learning methods and featurizations were explored, with particular focus on ECIF::RF and AEV-PLIG::GATv2. Model performance was evaluated using the Ross FEP Benchmark, a dataset of protein targets and congeneric ligand series with experimental binding affinities. The results suggest an intermediate balance between retaining enough data to avoid overfitting and filtering enough data to preserve target-relevant information. This trend was most clearly observed with ECIF::RF, where four of five proteins showed peak performance at a structural similarity threshold of approximately 0.3–0.5. Target- and family-specific models also showed improved ranking and top-hit retrieval for several proteins, despite weaker absolute prediction compared with AEV-PLIG::GATv2. While these findings should be interpreted with caution given limited statistical significance and substantial target-to-target variability, they motivate further investigation into the role of data selection and relevance as an underexplored axis in developing efficient machine-learning models for lead optimization.</p>
-</section>
-<section id="read-my-full-work" class="level2">
-<h2 class="anchored" data-anchor-id="read-my-full-work">Read my full work!</h2>
-<blockquote class="blockquote">
-<p>https://chyiricketts.onrender.com/papers/cr353_Ricketts_2025_Huang_SWPaper.pdf</p>
-</blockquote>
+<p>In progress - Current ideas to add - Molecular Fingerprints - Smith waterman algorithm - Spatial Transcriptomics methods</p>
 
 
 </section>
