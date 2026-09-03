@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chyi Ricketts">
+<meta name="dcterms.date" content="2026-09-15">
 
 <title>Cellular Segmentation – Blog</title>
 <style>
@@ -88,8 +89,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#introduction-what-is-cellular-segmentation-why-does-it-matter" id="toc-introduction-what-is-cellular-segmentation-why-does-it-matter" class="nav-link active" data-scroll-target="#introduction-what-is-cellular-segmentation-why-does-it-matter">Introduction: What is Cellular Segmentation? Why does it Matter?</a></li>
+  <li><a href="#software-used" id="toc-software-used" class="nav-link" data-scroll-target="#software-used">Software Used</a></li>
+  <li><a href="#pipeline-overview" id="toc-pipeline-overview" class="nav-link" data-scroll-target="#pipeline-overview">Pipeline Overview</a></li>
+  <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model Evaluation</a></li>
+  <li><a href="#web-application-integration" id="toc-web-application-integration" class="nav-link" data-scroll-target="#web-application-integration">Web Application Integration</a></li>
+  <li><a href="#conclusion-and-takeaways" id="toc-conclusion-and-takeaways" class="nav-link" data-scroll-target="#conclusion-and-takeaways">Conclusion and Takeaways</a></li>
   <li><a href="#read-my-full-work" id="toc-read-my-full-work" class="nav-link" data-scroll-target="#read-my-full-work">Read my full work!</a></li>
   </ul>
 </nav>
@@ -112,15 +117,13 @@ ul.task-list li input[type="checkbox"] {
 
     <ul class="nav-left">
 
-      <li><a href="https://chyiricketts.onrender.com">Home</a></li>
+    <li><a href="index.html">Home</a></li>
 
-      <li><a href="https://chyiricketts.onrender.com/#education">Education</a></li>
+    <li><a href="education.html">Education</a></li>
 
-      <li><a href="https://chyiricketts.onrender.com/#work-experience">Experience</a></li>
+    <li><a href="experience.html">Experience</a></li>
 
-      <li><a href="https://chyiricketts.onrender.com/blog/">Projects</a></li>
-
-      <li><a href="https://chyiricketts.onrender.com/contact.html">Contact</a></li>
+    <li><a href="blog/">Projects</a></li>
 
     </ul>
 
@@ -185,6 +188,10 @@ ul.task-list li input[type="checkbox"] {
   </div>
 
 </nav>
+
+
+
+
 
 <script>
 
@@ -265,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Cellular Segmentation</h1>
-<p class="subtitle lead">My Signature Work Project</p>
+<p class="subtitle lead">From Benchmarking to Application</p>
   <div class="quarto-categories">
     <div class="quarto-category">Papers</div>
     <div class="quarto-category">Bioinformatics</div>
@@ -286,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Invalid Date</p>
+      <p class="date">September 15, 2026</p>
     </div>
   </div>
   
@@ -298,23 +305,139 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>My Signature Work benchmarked multiple state-of-the-art segmentation software using my own confocal microscopy images of HeLa cells stained with hoechst and BODIPY</p>
+<p>A comparative evaluation of leading cellular segmentation tools and the development of a web-based application for segmentation visualization and analysis.</p>
+<section id="introduction-what-is-cellular-segmentation-why-does-it-matter" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-what-is-cellular-segmentation-why-does-it-matter">Introduction: What is Cellular Segmentation? Why does it Matter?</h2>
+<p>Cellular segmentation is the process of partitioning image pixels into distinct groups, or Regions of Interest (ROIs), where each region corresponds to an individual cell or nucleus. Rather than simply detecting where cells exist, segmentation precisely delineates their boundaries, enabling downstream quantitative analysis.</p>
+<p>This technique has found application across a wide range of fields including Medical imaging analysis: identifying tumor boundaries, counting cells in histology slides; Autonomous vehicle vision: object boundary detection in real-time scenes; Microscopy &amp; biology: tracking cell morphology, division, and migration</p>
+<p>One of the most compelling and fast-growing applications of cellular segmentation is in <strong>spatial transcriptomics</strong>, a field that allows biologists to study gene expression while preserving the spatial context of cells within a tissue, down to single-cell resolution. Accurate cell segmentation is the first gate of most spatial transcriptomics pipelines. Every downstream analysis (cell type calling, cell–cell interaction mapping, and spatial niche detection), depends on correctly assigning molecules to individual cells.</p>
 </section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>This study focuses on optimizing the efficiency of image analysis in scientific research through three main deliverables: an assessment of existing cellular segmentation software, an original web-based application for segmentation visualization, and a fine-tuned vision language model, BLIP-2. Several segmentation software were assessed through a benchmark analysis of segmentation accuracy following a literature review and a qualitative analysis to ultimately select Cellpose for integration with the web-based application. This user-friendly web graphical user interface (GUI) responds to user input to view image files by selecting pre-identified regions of interest (ROI) and corresponding extraction of features. This study establishes a recommended pipeline for segmenting masks with Cellpose for pixel-wise, accurate segmentation and highlighting ROIs with tools provided by the web-application. The fine-tuned BLIP-2 model utilizes its multimodal translational capabilities to enable subsequent automated captioning on a large set of images. This transformation into language data will allow any large language model (LLM) to identify patterns within the image set. This comprehensive pipeline traces the transformation of raw image data into processed language formats, leveraging the strengths of deep learning algorithms. This will provide biological research scientists with an efficient method for identifying trends in complex datasets without the need of unpacking data with complex software coding.</p>
+<section id="software-used" class="level2">
+<h2 class="anchored" data-anchor-id="software-used">Software Used</h2>
+<p>Several state-of-the-art tools were evaluated in this project spanning a range of algorithms and intended implementation.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Software</th>
+<th>Algorithm</th>
+<th>Features</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fiji/ImageJ</td>
+<td>Traditional (thresholding, watershed, etc.)</td>
+<td>Classical segmentation with plugins</td>
+<td><a href="https://github.com/imagej" class="uri">https://github.com/imagej</a></td>
+</tr>
+<tr class="even">
+<td>CellProfiler</td>
+<td>Traditional and ML</td>
+<td>High-throughput, batch processing, and modular workflows</td>
+<td><a href="https://github.com/CellProfiler" class="uri">https://github.com/CellProfiler</a></td>
+</tr>
+<tr class="odd">
+<td>Ilastik</td>
+<td>ML (Random Forest)</td>
+<td>Interactive pixel classification and object segmentation</td>
+<td><a href="https://github.com/ilastik" class="uri">https://github.com/ilastik</a></td>
+</tr>
+<tr class="even">
+<td>Aivia</td>
+<td>DL with AI assistance</td>
+<td>Advanced 3D segmentation, tracking, and visualization</td>
+<td><a href="https://www.aivia-software.com/" class="uri">https://www.aivia-software.com/</a></td>
+</tr>
+<tr class="odd">
+<td>DeepCell</td>
+<td>DL using U-Net (CNN-based)</td>
+<td>Pretrained models for nuclear/cell segmentation</td>
+<td><a href="https://github.com/vanvalenlab/deepcell-tf" class="uri">https://github.com/vanvalenlab/deepcell-tf</a></td>
+</tr>
+<tr class="even">
+<td>StarDist</td>
+<td>DL using U-Net (star-convex polygons)</td>
+<td>Optimized for star-convex objects</td>
+<td><a href="https://github.com/stardist/stardist" class="uri">https://github.com/stardist/stardist</a></td>
+</tr>
+<tr class="odd">
+<td>Cellpose</td>
+<td>DL using U-Net (flow-based CNN)</td>
+<td>Pretrained models, scalable for different cell types</td>
+<td><a href="https://github.com/MouseLand/cellpose" class="uri">https://github.com/MouseLand/cellpose</a></td>
+</tr>
+<tr class="even">
+<td>Segment Anything</td>
+<td>ViT with promptable DL</td>
+<td>Foundation model for general object segmentation</td>
+<td><a href="https://github.com/facebookresearch/segment-anything" class="uri">https://github.com/facebookresearch/segment-anything</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pipeline-overview" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline-overview">Pipeline Overview</h2>
+<ol type="1">
+<li><strong>Dataset Generation</strong>: Self-produced fluorescent microscopy images of HeLa stained with a combination of fluorescent dyes, including Hoechst 33342 (ThermoFisher, H3570), Calcein AM, Propidium Iodide (PI), BODIPY, WGA (Wheat Germ Agglutinin), Phalloidin, Concanavalin A (ConA), and SYTO Dyes.</li>
+<li><strong>Preprocessing</strong>: Background correction, illumination normalization, boundary cell removal using ImageJ</li>
+<li><strong>Pre-trained model predictions</strong>: Cell detection with pre-trained model or generalist algorithm</li>
+<li><strong>Model training</strong>: Fine tuning using Ilastik and Cellpose using a subset of the HeLa cell images</li>
+<li><strong>Fine-tuned model predictions</strong>: Cell detection with fine-tuned model</li>
+<li><strong>Evalution</strong>: F1 Scores, Contour extraction, Cell size statistics</li>
+</ol>
+</section>
+<section id="model-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="model-evaluation">Model Evaluation</h2>
+<p>Three algorithmically unique software: Ilastik, fine-tuned Cellpose, and Segment Anything and a preview of their segmentation outputs are shown below. ROIs identified in Ilastik are generally accurate with an F1 score of 0.7708; however, it overestimates the boundaries resulting in segmented masks that are larger than the expected truth masks. Cellpose produces masks that closely align to the ground truth masks. Even though individual masks yield a higher F1 score, crucial masks around the borders of the image are missing, averaging to an F1 score of 0.8773. The SAM model performs accurately but adds unnecessary additional masks in some locations, leading to an average F1 score of 0.7379.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="SW_Project_benchmark.png" class="img-fluid figure-img"></p>
+<p><img src="Figure_MainBenchmark.png" class="img-fluid figure-img"></p>
 <figcaption>Benchmarking Software Comparison</figcaption>
 </figure>
 </div>
+<p>Ilastik represents a simple Machine Learning model build upon Random Forest which requires “Shallow Learning” annotations for either automated or manual feature selection. On the other hand, Cellpose is a Deep Learning UNet based generalist model with the ability to fine-tune through additional annotations. Each model provides tradeoffs with Cellpose additionally automating many steps, becoming the most popular cellular segmentation software for Spatial Transcriptomics upstream processing due to the ease of use and reproducibility between users with high accuracy.</p>
+<p>Though with additional automation, while reprodubility is incrased, you loose the ability to apply manual control. Here, we see that on this set of images, Ilastik with Manual Feature selection reaches an F1 score of 0.8874, a considerable increase from automatic feature selection: 0.8353. While manual control is beneficial and can result in higher accuracy with the trained eye, you must commit additional time and have the expertise necessary.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_Ilastik.png" class="img-fluid figure-img"></p>
+<figcaption>Ilastik Feature Selection Comparison</figcaption>
+</figure>
+</div>
+<p>Even with more automated Deep Learning with Cellpose the output is highly dependent on hyperparameter selection as well as fine-tuning. Cellpose currently offers multiple generalist models built for segmenting on cytoplasm or nuclei. In this example, we see Cellpose accuracy jumps from an F1 score of 0.67826 using the generalist algorithm to 0.8773 when fine-tuned on just one set of similar images. This accuracy can also be attributed and varied with the accuracy of the annotater making the ground truths.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_Cellpose.png" class="img-fluid figure-img"></p>
+<figcaption>Cellpose Parameter Comparison</figcaption>
+</figure>
+</div>
+<p>In essense, each software and algorithm type comes with its own intentions and tradeoffs. When utlizing these tools, it is important to note their accuracy through metrics such as the F1 score, as their accuracy will affect the quality of downstream analysis and the conclusions drawn from that data.</p>
+</section>
+<section id="web-application-integration" class="level2">
+<h2 class="anchored" data-anchor-id="web-application-integration">Web Application Integration</h2>
+<p>As a computational biologist, I strongly believe in working with people from multiple domains but also making these amazing tools avaliable to everyone, including biologists with limited coding experience. Therefore, I wanted to make Cellpose segmentation outputs easily acessible and interactive for both visualization and analysis.</p>
+<p>Features: - Image Upload: Simply upload image file (.tiff, .png, .jpg, etc.) and the Cellpose .npy file - Mask Overlay Viewer: Interactive toggle between raw image, segmentation mask, and instance labels - Feature Extraction: Cell sizes, Cell Centers, and Intensity by Image Channel</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_WebApp.png" class="img-fluid figure-img"></p>
+<figcaption>Web Application Visual</figcaption>
+</figure>
+</div>
+<p>The website itself is no longer active, but the codes are avaliable on Github linked below.</p>
+</section>
+<section id="conclusion-and-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-and-takeaways">Conclusion and Takeaways</h2>
+<ul>
+<li>No single segmentation tool is universally best for all applications as their algorithms and intended purposes differ</li>
+<li>A tradeoff between reproducibility and manual control becomes more apparent as these processes are more automated</li>
+<li>My developed web application dramatically lowers the barrier to entry for biologists who want to apply segmentation tools to their microscopy images without writing code</li>
+</ul>
+<p>Cellular Segmentation is an ever developing field with new tools and developments. My work in this area is ongoing so if you’re working in this space and want to chat, feel free to reach out!</p>
 </section>
 <section id="read-my-full-work" class="level2">
 <h2 class="anchored" data-anchor-id="read-my-full-work">Read my full work!</h2>
-<p><a href="https://chyiricketts.onrender.com/files/papers/cr353_Ricketts_2025_Huang_SWPaper.pdf">Integrating Segmentation Software and BLIP-2 for Automated Cellular Data Analysis in a Web-based Application</a></p>
+<p>My undergraduate thesis at Duke University and Duke Kunshan University: <a href="https://chyiricketts.onrender.com/papers/cr353_Ricketts_2025_Huang_SWPaper.pdf">Integrating Segmentation Software and BLIP-2 for Automated Cellular Data Analysis in a Web-based Application</a></p>
+<p><a href="https://github.com/chyiricketts/SW_CellVis">GitHub Repository</a> containing codes pertinent to the web application visualization.</p>
 
 
 </section>
