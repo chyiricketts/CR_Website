@@ -1,33 +1,21 @@
-const navToggle = document.getElementById("nav-toggle");
-const navLeft = document.querySelector(".nav-left");
+document.addEventListener('partials:loaded', () => {
+  const navToggle = document.getElementById("nav-toggle");
+  const navLeft = document.querySelector(".nav-left");
 
-navToggle.addEventListener("click", () => {
+  navToggle.addEventListener("click", () => {
     navLeft.classList.toggle("active");
-});
+  });
 
+  let lastScrollY = window.scrollY;
+  const navbar = document.querySelector(".navigation");
 
-let lastScrollY = window.scrollY;
-
-const navbar = document.querySelector(".navigation");
-
-window.addEventListener("scroll", () => {
-
-    // current position
+  window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
-
-    // scrolling DOWN
-    if(currentScrollY > lastScrollY &&
-       currentScrollY > 80) {
-
-        navbar.classList.add("nav-hidden");
+    if (currentScrollY > lastScrollY && currentScrollY > 80) {
+      navbar.classList.add("nav-hidden");
+    } else {
+      navbar.classList.remove("nav-hidden");
     }
-
-    // scrolling UP
-    else {
-
-        navbar.classList.remove("nav-hidden");
-    }
-
-    // update last position
     lastScrollY = currentScrollY;
+  });
 });

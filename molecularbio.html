@@ -7,87 +7,130 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sections.css">
     <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'>
 </head>
 
 <body>
 
-  
-<header>
-  <nav class="navigation">
-    <div class="nav-container">
+    <div id="site-nav"></div>
 
-      <!-- Mobile toggle -->
-      <div class="nav-mobile" id="nav-toggle">☰</div>
-
-      <!-- LEFT LINKS -->
-      <ul class="nav-left">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="experience.html">Experience</a></li>
-        <li><a href="blog/">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-
-      <!-- RIGHT ICONS -->
-      <div class="nav-right">
-        <button class="theme-toggle" aria-label="Toggle theme">
-          <img src="logoimg/sun.svg" class="nav-icon" />
-        </button>
-
-        <a href="mailto:chyi.ricketts@gmail.com">
-          <img src="logoimg/email.svg" class="nav-icon">
-        </a>
-
-        <a href="https://www.linkedin.com/in/chyi-ricketts/">
-          <img src="logoimg/linkedin.svg" class="nav-icon">
-        </a>
-
-        <a href="https://github.com/chyiricketts">
-          <img src="logoimg/github.svg" class="nav-icon">
-        </a>
-
-        <a href="#">
-          <img src="logoimg/search.svg" class="nav-icon">
-        </a>
-      </div>
-
-    </div>
-  </nav>
-</header>
-
-
-  <main>
-
+    <main>
     <canvas id="shapes"></canvas>
-    
-    <div class = "center-all">
-        
-        <div class = "title-text">
-            <h1>Chyi Ricketts</h1>
-            <p>THIS IS MY MOLECULAR BIO PAGE</p>        
+
+    <div class="center-all">
+        <div class="title-text">
+        <h1>Chyi Ricketts</h1>
+        <p>Molecular Biology</p>
         </div>
 
         <div class="about-section">
           <img src="images/DKU Headshot.jpg" id="about-img">
           <div class="about-text">
             <h2>About Me</h2>
-            <p>Hi! My name is Chyi Ricketts and I'm a <b>computational biologist</b> currently enrolled as a postgraduate researcher in Cancer Informatics at Imperial College London. I am most passionate about exploring the intersection of these two complex and highly interconnected fields: Biology and Computer Science. </p>
+            <p>Hi! My name is Chyi Ricketts and I'm a <b>computational biologist</b> currently enrolled as a postgraduate researcher in Cancer Informatics at Imperial College London. My work in molecular biology spans wet-lab techniques including knock-in tagging, embryo microinjection, and fluorescent microscopy, alongside RNAi-based functional validation — bridging bench work with computational analysis.</p>
+            <div class="about-buttons">
+              <a href="files/RICKETTS_Chyi_Resume_MolecularBio.pdf" target="_blank" class="btn btn-primary">
+                📄 Download Resume
+              </a>
+            </div>
           </div>
         </div>
     </div>
 
-  </main>
+    <!-- Everything below is full-width sections, wrapped so the gradient fades once across all three instead of repeating per-section -->
+    <div class="domain-sections-wrap">
+    <section class="info-section">
+        <div class="info-inner">
+        <h2>Technical Toolkit</h2>
+        <div class="expertise-table">
 
+            <div class="expertise-col">
+            <h3>Category 1</h3>
+            <ul>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+            </ul>
+            </div>
 
-  <footer>
-      <p>© 2026 Chyi Ricketts</p>
-  </footer>
+            <div class="expertise-col">
+            <h3>Category 2</h3>
+            <ul>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+            </ul>
+            </div>
 
+            <div class="expertise-col">
+            <h3>Category 3</h3>
+            <ul>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+                <li>Skill placeholder</li>
+            </ul>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-inner">
+        <h2>Selected Projects</h2>
+        <div class="project-cards">
+
+            <div class="project-card">
+            <div class="project-card-body">
+                <h3><a href="blog/posts/project1/" class="stretched-link">Project Title 1</a></h3>
+                <p>Short description here</p>
+                <div class="project-links">
+                <a href="blog/posts/project1/" class="btn btn-outline">
+                    📝 Write-up
+                </a>
+                <a href="https://github.com/chyiricketts/REPO1"
+                    target="_blank" class="btn btn-outline">
+                    💻 GitHub
+                </a>
+                </div>
+            </div>
+            </div>
+
+            <div class="project-card">
+            <div class="project-card-body">
+                <h3><a href="blog/posts/project2/" class="stretched-link">Project Title 2</a></h3>
+                <p>Short description here</p>
+                <div class="project-links">
+                <a href="blog/posts/project2/" class="btn btn-outline">
+                    📝 Write-up
+                </a>
+                <a href="https://github.com/chyiricketts/REPO2"
+                    target="_blank" class="btn btn-outline">
+                    💻 GitHub
+                </a>
+                </div>
+            </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+    </div>
+
+    </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/include-partials.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="js/navbar.js"></script>
-  <script src="js/light-mode.js"></script>
+  <script src="js/canvas-shapes.js"></script>
   <script src="js/canvas-animate.js"></script>
+  <script src="js/light-mode.js"></script>
 
 </body>
 

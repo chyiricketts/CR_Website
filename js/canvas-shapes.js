@@ -1,13 +1,13 @@
-// "Dark mode" canvas animation: atoms, hexagons, triangles, and the bonds
-// drawn between nearby ones. Exposes start()/stop() so light-mode.js can
-// switch it in and out against canvas-shapes.js (LightCanvas) without both
-// running - and without the two scripts' globals colliding, since
-// everything here lives inside this IIFE.
-window.DarkCanvas = (function () {
+// "Light mode" canvas animation: calmer drifting hex/triangle outlines,
+// no atoms/bonds, no gradient overlay. Exposes start()/stop() so
+// light-mode.js can switch it in and out against canvas-animate.js
+// (DarkCanvas) without both running - and without the two scripts'
+// globals colliding, since everything here lives inside this IIFE.
+window.LightCanvas = (function () {
   let canvas, context;
   let shapesArr = [];
-  const shapeInitialDensity = 0.10;
-  const spawnRate = 0.10;
+  const shapeInitialDensity = 0.08;
+  const spawnRate = 0.03;
   let running = false;
   let frameId = null;
 
@@ -27,20 +27,6 @@ window.DarkCanvas = (function () {
   }
 
   function drawShape(h) {
-    if (h.type === "atom") {
-      let radius = (1 - h.depth) * 3 + 2;
-
-      context.beginPath();
-      context.arc(h.x, h.y, radius, 0, Math.PI * 2);
-      context.fillStyle = "rgba(140,220,255,0.9)";
-      context.shadowBlur = 15;
-      context.shadowColor = "rgba(140,220,255,1)";
-      context.fill();
-      context.shadowBlur = 0;
-
-      return;
-    }
-
     let size = (1 - h.depth) * 10 + 5;
 
     context.beginPath();
@@ -62,36 +48,9 @@ window.DarkCanvas = (function () {
     context.stroke();
   }
 
-  function drawBonds() {
-    for (let i = 0; i < shapesArr.length; i++) {
-      for (let j = i + 1; j < shapesArr.length; j++) {
-        let a = shapesArr[i];
-        let b = shapesArr[j];
-
-        let dx = a.x - b.x;
-        let dy = a.y - b.y;
-        let dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 120) {
-          let alpha = (1 - dist / 120) * 0.2;
-
-          context.beginPath();
-          context.moveTo(a.x, a.y);
-          context.lineTo(b.x, b.y);
-          context.strokeStyle = `rgba(120,200,255,${alpha})`;
-          context.lineWidth = 1;
-          context.shadowBlur = 8;
-          context.shadowColor = "rgba(120,200,255,0.8)";
-          context.stroke();
-          context.shadowBlur = 0;
-        }
-      }
-    }
-  }
-
   function spawnShape(atTop) {
     let depth = Math.random();
-    let dir = Math.random() * Math.PI * 2;
+    let dir = -Math.PI / 2; // straight up
     let angle = Math.random() * 2 * Math.PI;
     let angspeed = Math.random() * 0.01;
     let size = (1 - depth) * 10 + 5;
@@ -100,21 +59,12 @@ window.DarkCanvas = (function () {
       y: atTop ? -size - 5 : Math.random() * canvas.height
     };
 
-    let typeChance = Math.random();
-    let type;
-    if (typeChance < 1) {
-      type = "atom";
-    } else if (typeChance < 0.6) {
-      type = "hex";
-    } else {
-      type = "triangle";
+    let numSides = Math.random() < 0.6 ? 6 : 3;
+    if (numSides === 3) {
+      depth += (1 - depth) * 0.2;
     }
 
-    let numSides = 6;
-    if (type === "triangle") numSides = 3;
-
     shapesArr.push({
-      type: type,
       numSides: numSides,
       x: position.x,
       y: position.y,
@@ -135,13 +85,11 @@ window.DarkCanvas = (function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.restore();
 
-    drawBonds();
-
     for (let i = 0; i < shapesArr.length; i++) {
       let shape = shapesArr[i];
       drawShape(shape);
 
-      let speed = (1 - shape.depth * shape.depth) / 3 + 0.05;
+      let speed = (1 - shape.depth * shape.depth) / 3 + 0.1;
       shape.x += speed * Math.cos(shape.dir);
       shape.y -= speed * Math.sin(shape.dir);
       shape.angle += shape.angspeed;

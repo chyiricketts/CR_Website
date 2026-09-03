@@ -46,27 +46,6 @@ body {
   );
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-
-  background: radial-gradient(
-    circle at center,
-    #ffffff 0%,
-    #d8f4ff 40%,
-    #bfd4ff 100%
-  );
-
-  opacity: 0;
-  transition: opacity 1.5s ease;
-}
-
-body.light-theme::before {
-  opacity: 1;
-}
-
 main {
     flex: 1;
 }

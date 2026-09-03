@@ -32,9 +32,9 @@
 
 .light-theme {
     /* Core theme */
-  --background: #ffffff;
+  --background: #deddd8;
   --gradient_1: #ffffff;
-  --gradient_2: #bfd4ff;
+  --gradient_2: #deddd8;
   --surface: #5a5a5d;
 
   --text: #0b1220;          /* light mode: dark text */
