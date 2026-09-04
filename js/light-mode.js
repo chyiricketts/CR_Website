@@ -21,6 +21,8 @@ switchCanvasForTheme(savedIsLight);
 // include-partials.js — binding directly here would silently attach to
 // nothing, since the button doesn't exist yet at the moment this script runs.
 $(document).on("click", ".theme-toggle", function () {
+  // Only animate from the first real toggle onward - never on page load.
+  document.body.classList.add('theme-transition');
   $("body").toggleClass("light-theme");
   const isLight = document.body.classList.contains('light-theme');
   localStorage.setItem('theme', isLight ? 'light' : 'dark');

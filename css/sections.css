@@ -15,45 +15,57 @@
   background: none;
 }
 
-/* Domain page intro */
-.domain-intro {
-  width: 90%;
-  max-width: 900px;
-  margin: 0 auto 3rem auto;
-  opacity: 0.85;
-  line-height: 1.7;
-  position: relative;
-  z-index: 1;
+/* Sections inside the same wrap already read as one continuous panel
+   (the gradient banding is already handled above), so the shared boundary
+   between them doesn't need the full 80px hero-style padding on both
+   sides - just the very top (after the hero) and very bottom (before the
+   footer) do. */
+.domain-sections-wrap .info-section:not(:last-child) {
+  padding-bottom: 32px;
 }
-.domain-section {
-  width: 100%;
+
+.domain-sections-wrap .info-section:not(:first-child) {
+  padding-top: 32px;
+}
+
+/* Education page: its own (tighter) version of the same idea, not shared
+   with .domain-sections-wrap - Education/Certifications only hold a
+   couple of short entries each, so even the reduced domain-page padding
+   above still reads as too much empty space around so little content. */
+.education-sections-wrap {
+  position: relative;
+  z-index: 2;
   background: linear-gradient(
     180deg,
     var(--gradient_2) 0%,
-    var(--background) 100%
+    var(--background) 60%
   );
-  position: relative;
-  z-index: 2;
-  padding: 80px 20px;
 }
 
-/* then constrain the inner content with a wrapper */
-.domain-section-inner {
-  max-width: 900px;
-  margin: 0 auto;
+.education-sections-wrap .info-section {
+  background: none;
+  padding: 40px 20px;
 }
 
-.domain-section h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
+.education-sections-wrap .info-section:not(:last-child) {
+  padding-bottom: 16px;
 }
 
-/* Expertise table */
+.education-sections-wrap .info-section:not(:first-child) {
+  padding-top: 16px;
+}
+
+.education-sections-wrap .info-item {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+}
+
+/* Expertise table - auto-fit so this works whether there are 3 columns
+   (a template page) or 4 (the unified toolkit on index.html), without
+   needing a column count baked into the CSS. */
 .expertise-table {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
 }
 
@@ -61,7 +73,7 @@
   font-size: 1.8rem;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  opacity: 0.9;
+  color: var(--muted-text);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-bottom: 1px solid var(--border);
@@ -77,7 +89,7 @@
 
 .expertise-col ul li {
   font-size: 1.45rem;
-  opacity: 0.95;
+  color: var(--muted-text);
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--border-shadow);
 }
@@ -162,7 +174,7 @@
   padding: 0.2em 0.6em;
   border-radius: 20px;
   border: 1px solid var(--border);
-  opacity: 0.7;
+  color: var(--muted-text);
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
@@ -170,7 +182,7 @@
 .project-card-body p {
   margin: 0;
   font-size: 0.85rem;
-  opacity: 0.7;
+  color: var(--muted-text);
   line-height: 1.5;
 }
 

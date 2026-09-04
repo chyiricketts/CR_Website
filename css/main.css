@@ -32,8 +32,6 @@ body {
             var(--gradient_1) 40%,
             var(--gradient_2) 100%
         );
-
-    transition: background 1.5s ease, color 1.5s ease;
 }
 
 body {
@@ -150,9 +148,6 @@ main {
   background: var(--background);
   border: 1px solid var(--border);
   border-radius: 20px;
-  transition: background 1.5s ease, 
-              color 1.5s ease, 
-              border-color 1.5s ease;
 }
 
 #about-img {
@@ -179,7 +174,7 @@ main {
 .about-text p {
   margin: 0;
   line-height: 1.6;
-  opacity: 0.85;
+  color: var(--muted-text);
 }
 
 @media (max-width: 768px) {
@@ -250,10 +245,6 @@ main {
 
   position: relative;
   z-index: 2;
-
-  transition: background 1.5s ease, 
-              color 1.5s ease, 
-              border-color 1.5s ease;
 }
 
 .info-inner {
@@ -287,7 +278,7 @@ main {
 
 .info-meta {
   font-size: 14px;
-  opacity: 0.6;
+  color: var(--muted-text);
   margin-bottom: 10px;
 }
 
@@ -301,89 +292,6 @@ main {
     }
 }
 
-
-
-/* Domain Cards Section */
-.domains-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  width: 90%;
-  max-width: 2000px;
-  margin: 0 auto 6rem auto;
-  position: relative;
-  z-index: 1;
-}
-
-.domain-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 2rem 1.5rem;
-
-  background: var(--background);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  backdrop-filter: blur(6px);
-
-  text-decoration: none;
-  color: var(--text);
-  cursor: pointer;
-
-  transition: transform 0.2s ease, 
-              box-shadow 0.2s ease,
-              border-color 0.2s ease;
-}
-
-.domain-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px var(--border-shadow);
-  border-color: var(--glow);
-}
-
-.domain-icon {
-  font-size: 2rem;
-}
-
-.domain-card h3 {
-  font-size: 2rem;
-  text-align: center;
-  margin: 0;
-}
-
-.domain-card p {
-  font-size: 0.85rem;
-  opacity: 0.7;
-  margin: 0;
-  line-height: 1.5;
-  text-align: center;
-}
-
-/* Skill tags */
-.domain-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: auto; /* pushes tags to bottom of card */
-  padding-top: 0.5rem;
-}
-
-.domain-tag {
-  font-size: 0.75rem;
-  padding: 0.2em 0.6em;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  opacity: 0.7;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .domains-section {
-    grid-template-columns: 1fr;
-  }
-}
-
-
 /*Footer Styling*/
 
 footer {
@@ -396,14 +304,10 @@ footer {
     border-top: 1px solid var(--border);
     box-shadow: var(--border-shadow);
     color: var(--text);
-
-    transition: background 1.5s ease, 
-              color 1.5s ease, 
-              border-color 1.5s ease;
 }
 
 footer p {
     font-size: 14px;
-    color: var(--muted-text);
+    color: var(--muted-text-invert);
     margin: 0.2rem 0;
 }
