@@ -90,7 +90,12 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#skills" id="toc-skills" class="nav-link" data-scroll-target="#skills">Skills</a></li>
+  <li><a href="#sirna-library-construction" id="toc-sirna-library-construction" class="nav-link" data-scroll-target="#sirna-library-construction">siRNA Library Construction</a></li>
+  <li><a href="#library-testing" id="toc-library-testing" class="nav-link" data-scroll-target="#library-testing">Library Testing</a></li>
+  <li><a href="#hairpin-cloning" id="toc-hairpin-cloning" class="nav-link" data-scroll-target="#hairpin-cloning">Hairpin Cloning</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#links-and-further-reading" id="toc-links-and-further-reading" class="nav-link" data-scroll-target="#links-and-further-reading">Links and Further Reading</a></li>
   </ul>
 </nav>
     </div>
@@ -112,13 +117,13 @@ ul.task-list li input[type="checkbox"] {
 
     <ul class="nav-left">
 
-    <li><a href="index.html">Home</a></li>
+    <li><a href="https://chyiricketts.onrender.com">Home</a></li>
 
-    <li><a href="education.html">Education</a></li>
+    <li><a href="https://chyiricketts.onrender.com/education.html">Education</a></li>
 
-    <li><a href="experience.html">Experience</a></li>
+    <li><a href="https://chyiricketts.onrender.com/experience.html">Experience</a></li>
 
-    <li><a href="blog/">Projects</a></li>
+    <li><a href="https://chyiricketts.onrender.com/blog/">Projects</a></li>
 
     </ul>
 
@@ -267,7 +272,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Prokaryotic siRNA</h1>
-<p class="subtitle lead">siRNA</p>
+<p class="subtitle lead">An exploration of RNA interference</p>
   <div class="quarto-categories">
     <div class="quarto-category">Molecular Biology</div>
   </div>
@@ -299,15 +304,92 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Prokaryotic siRNA (short interferring RNA) protocol and cloning short hairpin RNA</p>
+<p>Prokaryotic siRNA (short interfering RNA) library construction, library testing, and cloning short hairpin RNA.</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>During my time at the Huang Lab, I did a siRNA protocol to test toxicity of knockdown certain sequences on HeLa cells.</p>
-<p>here’s the protocol: https://www.nature.com/articles/nprot.2013.149</p>
+<p>In 2023, I joined the Huang Lab at Duke Kunshan University, specializing in RNA research including siRNA and antisense RNA biology. The Huang Lab invented the first and only cell-based method for producing highly potent and specific siRNAs in bacteria, named pro-siRNAs for prokaryotic siRNAs. siRNAs have the ability to accurately downregulate the expression of target proteins in human cells, which is essential for identifying important genes involved in cellular signaling and disease. Many siRNA-based medications are currently in clinical trials, making this an exciting and clinically relevant area of research.</p>
+<p>Funded by the Wang-Cai Student Research Scholars Program at Duke Kunshan University and supervised by Prof.&nbsp;Linfeng Huang, our project revolved around the methods used for pro-siRNA based genetic screening. We followed the prokaryotic siRNA protocol published in Nature Protocols by Prof.&nbsp;Huang: <a href="https://doi.org/10.1038/nprot.2013.149">doi.org/10.1038/nprot.2013.149</a></p>
+<p>The three main components of the project were:</p>
+<ol type="1">
+<li>Building an siRNA library that can target a wide array of genes in parallel</li>
+<li>Testing the siRNA library by observing and quantifying the phenotypic effects of treating human cells with the extracted siRNAs</li>
+<li>Cloning hairpin structures for selected candidate genes for downstream validation</li>
+</ol>
+</section>
+<section id="skills" class="level2">
+<h2 class="anchored" data-anchor-id="skills">Skills</h2>
+<ul>
+<li>Mammalian (HeLa) cell culture</li>
+<li>Reverse transfection</li>
+<li>Cell lysis and RNA extraction</li>
+<li>Gel electrophoresis</li>
+<li>Nanodrop concentration measurement</li>
+<li>Bacterial cloning</li>
+<li>High-content screening (HCS) and fluorescent microscopy</li>
+<li>Cell staining</li>
+</ul>
+</section>
+<section id="sirna-library-construction" class="level2">
+<h2 class="anchored" data-anchor-id="sirna-library-construction">siRNA Library Construction</h2>
+<p>siRNA library construction involves isolating small interfering RNA molecules that target a wide array of genes through sequential steps of bacterial transformation, cell lysis, RNA binding, and purification using silica-based beads, magnetic beads, and 96-well plates. The ligation product is introduced into competent E. coli cells, followed by bacterial culture, induction of siRNA expression, extraction, and preservation. As quality controls, siRNA concentrations in each well are measured by nanodrop and a subset of wells are verified through gel electrophoresis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_LibraryGel.png" class="img-fluid figure-img"></p>
+<figcaption>Library Construction Gel Figure</figcaption>
+</figure>
+</div>
+<p>Gels were run at 85 min, 120V. Concentrations for library extractions generally decreased over successive weeks. The PT7x3 plasmid in particular showed one high-concentration outlier from the 7/7 extraction that is likely a measurement artifact, as band brightness on the gel was inconsistent with the reported concentration relative to other weeks.</p>
+</section>
+<section id="library-testing" class="level2">
+<h2 class="anchored" data-anchor-id="library-testing">Library Testing</h2>
+<p>Reverse transfections were used to test siRNA knockdown of EGFP in a HeLa-EGFP cell line. The siRNA and transfection reagent (RNAi-max, Opti-MEM, and DMSO) were diluted separately, then mixed with approximately 4,000 cells per well in a 96-well plate and incubated at 37°C with 5% CO2 for 48-72 hours.</p>
+<p>After transfection, HCS (high-content screening) was used for imaging and analysis. A 1:1000 dye mixture in PBS was added to stain distinct cell compartments: Hoechst stains nuclei of living cells and PI stains dead cells. The HCS platform captures focused fluorescence images across multiple fields per well and runs an automated analysis algorithm to measure cell count, transfection efficiency, and other phenotypes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_WholePlate.png" class="img-fluid figure-img"></p>
+<figcaption>Whole Plate Figure and Design</figcaption>
+</figure>
+</div>
+<p>Three controls were included to validate the screening pipeline:</p>
+<ol type="1">
+<li><strong>siNC</strong> is a negative control containing a lipid nanoparticle with no siRNA. We expect cells to remain viable, confirming that the lipid nanoparticle itself has no toxic effects.</li>
+<li><strong>siPLK1</strong> is a positive control for toxicity. PLK1 (Polo-like kinase 1) is a human gene essential for cell division. Knockdown results in many dead cells, confirmed by high PI signal, validating that the transfection is working and cells are responsive.</li>
+<li><strong>siEGFP</strong> is a control for knockdown specificity. EGFP is a reporter gene not naturally present in human cells. Its successful silencing, shown by the near-absent green channel, confirms the pro-siRNAs are functional and specific without causing off-target toxicity.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_Controls.png" class="img-fluid figure-img"></p>
+<figcaption>siRNA Control Demonstration Figure</figcaption>
+</figure>
+</div>
+<p>Flow cytometry was used in parallel to validate EGFP expression levels. After digestion to single cell suspension and centrifugation, cells were resuspended in PBS and run on the Beckman Coulter CytoFLEX. The FACS FITC channel was used to detect EGFP fluorescence for comparison with HCS results.</p>
+<p>The bar graphs below show total EGFP intensity, average EGFP intensity per cell, and total valid object count across all pro-siRNA plasmids and controls. Pro-siRNA plasmids broadly cluster near siNC across all three metrics, confirming that the library does not cause non-specific EGFP knockdown or toxicity. siEGFP shows a clear reduction in EGFP intensity while maintaining healthy cell counts, demonstrating successful and specific knockdown.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_BarGraphs.png" class="img-fluid figure-img"></p>
+<figcaption>siRNA Object Count and Intensity Results</figcaption>
+</figure>
+</div>
+</section>
+<section id="hairpin-cloning" class="level2">
+<h2 class="anchored" data-anchor-id="hairpin-cloning">Hairpin Cloning</h2>
+<p>To enhance the efficacy of RNA interference for a particular gene, we built a hairpin structure by inserting two reverse-complemented DNA fragments into a plasmid. The protocol includes PCR amplification, digestion of DNA fragments and plasmids, purification, ligation, transformation, bacterial culturing, and plasmid extraction. Cloning efficiency is confirmed by gel electrophoresis, where the presence of two distinct bands indicates successful insertion. The figure below shows results for the integration of EGFP1 into various plasmids.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_CloningGel.png" class="img-fluid figure-img"></p>
+<figcaption>Bacterial Cloning Figure</figcaption>
+</figure>
+</div>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>I learned so much! and used those images</p>
+<p>There are currently several FDA-approved siRNA-based therapeutics including Patisiran, Inclisiran, and Givosiran, with many more in clinical trials. The field is moving fast. The major bottleneck during my time working in this space — delivery of siRNA into cells via lipid nanoparticles — has largely been solved, opening the door to a much broader range of therapeutic targets. siRNA represents a genuinely exciting class of drugs: specific, potent, and temporary, offering a route to silence disease-causing genes without permanently altering the genome. Pro-siRNA bacterial production, the method developed by the Huang Lab, could offer a scalable and cost-effective alternative to synthetic siRNA production in clinical applications.</p>
+<p>During my time in the SRS program, I contributed to building and validating the screening pipeline: library construction, library testing, and hairpin cloning. The specific siRNA candidates identified through this work were carried forward into downstream analysis by Beibei Hou in the Huang Lab. I’m grateful to have contributed to a portion of this research in a field with so much potential.</p>
+</section>
+<section id="links-and-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="links-and-further-reading">Links and Further Reading</h2>
+<p><a href="https://doi.org/10.1038/nprot.2013.149">Nature Protocols: Prokaryotic siRNA</a></p>
+<p><a href="https://chyiricketts.onrender.com/papers/SRS_poster.png">SRS Poster</a></p>
 
 
 </section>
