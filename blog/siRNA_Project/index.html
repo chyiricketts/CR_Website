@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chyi Ricketts">
-<meta name="dcterms.date" content="2026-09-12">
+<meta name="dcterms.date" content="2023-05-04">
 
-<title>Target Specific Scoring Functions – Blog</title>
+<title>Prokaryotic siRNA – Blog</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -90,19 +90,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#hypothesis-and-aims" id="toc-hypothesis-and-aims" class="nav-link" data-scroll-target="#hypothesis-and-aims">Hypothesis and Aims</a></li>
-  <li><a href="#protein-targets" id="toc-protein-targets" class="nav-link" data-scroll-target="#protein-targets">Protein Targets</a></li>
-  <li><a href="#methods-overview" id="toc-methods-overview" class="nav-link" data-scroll-target="#methods-overview">Methods Overview</a></li>
-  <li><a href="#what-i-found" id="toc-what-i-found" class="nav-link" data-scroll-target="#what-i-found">What I Found</a>
-  <ul class="collapse">
-  <li><a href="#target-specific-results" id="toc-target-specific-results" class="nav-link" data-scroll-target="#target-specific-results">Target-Specific Results</a></li>
-  <li><a href="#family-specific-threshold-analysis" id="toc-family-specific-threshold-analysis" class="nav-link" data-scroll-target="#family-specific-threshold-analysis">Family-Specific Threshold Analysis</a></li>
-  <li><a href="#ranking-vs.-accuracy" id="toc-ranking-vs.-accuracy" class="nav-link" data-scroll-target="#ranking-vs.-accuracy">Ranking vs.&nbsp;Accuracy</a></li>
-  <li><a href="#overall-comparison" id="toc-overall-comparison" class="nav-link" data-scroll-target="#overall-comparison">Overall Comparison</a></li>
-  </ul></li>
-  <li><a href="#conclusion-and-takeaways" id="toc-conclusion-and-takeaways" class="nav-link" data-scroll-target="#conclusion-and-takeaways">Conclusion and Takeaways</a></li>
-  <li><a href="#full-thesis-and-source-code" id="toc-full-thesis-and-source-code" class="nav-link" data-scroll-target="#full-thesis-and-source-code">Full Thesis and Source Code</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -278,12 +266,10 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Target Specific Scoring Functions</h1>
-<p class="subtitle lead">A new way to approach binding affinity prediction</p>
+<h1 class="title">Prokaryotic siRNA</h1>
+<p class="subtitle lead">siRNA</p>
   <div class="quarto-categories">
-    <div class="quarto-category">Papers</div>
-    <div class="quarto-category">Bioinformatics</div>
-    <div class="quarto-category">Machine Learning</div>
+    <div class="quarto-category">Molecular Biology</div>
   </div>
   </div>
 
@@ -301,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 12, 2026</p>
+      <p class="date">May 4, 2023</p>
     </div>
   </div>
   
@@ -313,149 +299,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Target-specific Machine Learning Scoring Functions have the potential to improve upon current generalizable scoring functions, particularly for lead optimization.</p>
+<p>Prokaryotic siRNA (short interferring RNA) protocol and cloning short hairpin RNA</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Bringing a new drug to market requires over a decade of development and investments exceeding $1 billion USD. Modern drug discovery pipelines employ computational methods to supplement high-throughput screening and reduce costs, with current virtual screening pipelines able to evaluate billions of compounds in a single day. Within both virtual screening and lead optimization, binding affinity prediction — the task of estimating the strength of interaction between a protein and a ligand — is central to prioritizing which compounds are worth pursuing.</p>
-<p>This project focuses specifically on lead optimization, an iterative stage in which a promising compound is refined to improve its drug-like properties while maintaining or enhancing binding affinity. At this stage, scoring functions must be sufficiently sensitive and specific to capture the effects of small chemical modifications and correctly prioritize high-affinity candidates.</p>
+<p>During my time at the Huang Lab, I did a siRNA protocol to test toxicity of knockdown certain sequences on HeLa cells.</p>
+<p>here’s the protocol: https://www.nature.com/articles/nprot.2013.149</p>
 </section>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Two methods of binding affinity prediction are most relevant to this work.</p>
-<p><strong>Free Energy Perturbation (FEP)</strong> is among the most accurate physics-based approaches available. FEP constructs a perturbation map between structurally similar ligands within a congeneric series and predicts relative binding free energies using rigorous statistical mechanics and classical force fields. Despite its accuracy, FEP is computationally demanding — taking between 1.5 and 7 hours per edge — making it impractical for high-throughput applications. In 2023, the Ross FEP Benchmark was published as a gold standard for binding affinity prediction evaluation.</p>
-<p><strong>Machine Learning Scoring Functions</strong>, such as AEV-PLIG (Atomic Environment Vectors in a Protein-Ligand Interaction Graph), take a fundamentally different approach. AEV-PLIG is a graph neural network (GNN)-based scoring function that encodes the local atomic environment of each atom in the protein-ligand complex. It is trained on large, diverse datasets to maximize generalization across targets and chemical spaces — and this design choice is exactly what my study investigates. AEV-PLIG remains broadly competitive with FEP+ while being significantly less computationally expensive. In my work, I refer to it as AEV-PLIG::GATv2.</p>
-<p>The core tension is this: generic models like AEV-PLIG are built to generalize across all targets, but lead optimization is a fundamentally different problem. Compounds are typically confined to a narrow, congeneric chemical series around a known scaffold, and models are repeatedly applied to predict small, fine-grained changes in binding affinity for a single target. A model optimized for breadth may not be the right tool for that job.</p>
-</section>
-<section id="hypothesis-and-aims" class="level2">
-<h2 class="anchored" data-anchor-id="hypothesis-and-aims">Hypothesis and Aims</h2>
-<p>This brings me to the central question: can scoring functions be improved by training on restricted, target-relevant datasets, even at the cost of reduced data size?</p>
-<p>This addresses a real gap in the field. Many current scoring functions, including AEV-PLIG, prioritize generalization but may not be optimized for the high specificity and sensitivity required within a single target or congeneric chemical space — exactly what lead optimization demands.</p>
-<ul>
-<li><strong>Aim 1:</strong> Explore the effect of training models using only data for the specific protein target — <em>target-specific models</em></li>
-<li><strong>Aim 2:</strong> Explore the effect of evaluating data quality and relevance using structural similarity as a threshold — <em>family-specific models</em></li>
-<li><strong>Overall:</strong> Evaluate how different featurization schemes and learning algorithms respond to these changes</li>
-</ul>
-</section>
-<section id="protein-targets" class="level2">
-<h2 class="anchored" data-anchor-id="protein-targets">Protein Targets</h2>
-<p>Five cancer-related protein targets were selected based on two criteria: all five are cancer-relevant with varying degrees of clinical translation, and each contributes a congeneric series of sufficient size to the Ross FEP Benchmark. Together they span a range of structural and data-richness contexts — from well-characterized systems like MCL1 to more challenging, less-annotated targets like PFKFB3.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Protein</th>
-<th>Full Name</th>
-<th>Clinical Stage</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>MCL1</td>
-<td>Myeloid Cell Leukemia 1</td>
-<td>Clinical trials</td>
-</tr>
-<tr class="even">
-<td>SYK</td>
-<td>Spleen Tyrosine Kinase</td>
-<td>FDA approved</td>
-</tr>
-<tr class="odd">
-<td>HIF2α</td>
-<td>Hypoxia-Inducible Factor 2α</td>
-<td>FDA approved</td>
-</tr>
-<tr class="even">
-<td>PFKFB3</td>
-<td>Phosphofructokinase Fructose Bisphosphatase 3</td>
-<td>Preclinical</td>
-</tr>
-<tr class="odd">
-<td>MAPK14</td>
-<td>Mitogen-activated Protein Kinase 14</td>
-<td>Failed trials</td>
-</tr>
-</tbody>
-</table>
-<p>For this page, I’ll focus on <strong>MCL1</strong> and <strong>PFKFB3</strong> as they best illustrate the range of results. MCL1 is well-conserved, has a single well-defined binding site, and is strongly represented in available training data — a relatively tractable prediction target. PFKFB3, on the other hand, has a unique protein fold, multiple binding sites, no approved clinical inhibitors, and very limited structural representation in public databases. It is the hardest target in this study, and as we’ll see, the one where data relevance matters most.</p>
-</section>
-<section id="methods-overview" class="level2">
-<h2 class="anchored" data-anchor-id="methods-overview">Methods Overview</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Figure_Methods.png" class="img-fluid figure-img"></p>
-<figcaption>Methods Overview</figcaption>
-</figure>
-</div>
-<p>Each model follows the same pipeline from database to evaluation. Training data was drawn from three databases (PDBbind, BindingNet, BindingDB-DCS), filtered for quality, and split using a 5-fold cluster split to minimize ligand similarity between training and validation sets. Target-specific datasets contain only complexes matching the exact protein target. Family-specific datasets are constructed using TM-align structural similarity scores, where a training complex is included if its TM-score exceeds a given threshold θ — ranging from 0.0 (generic, all data) to 0.9 (highly stringent). All models are evaluated on the Ross FEP Benchmark test set, which is fully held out from training and validation.</p>
-<p>Two featurization and model combinations are the focus of this work: <strong>ECIF::RF</strong> (Extended Connectivity Interaction Fingerprints with a Random Forest) and <strong>AEV-PLIG::GATv2</strong> (the graph neural network baseline).</p>
-</section>
-<section id="what-i-found" class="level2">
-<h2 class="anchored" data-anchor-id="what-i-found">What I Found</h2>
-<section id="target-specific-results" class="level3">
-<h3 class="anchored" data-anchor-id="target-specific-results">Target-Specific Results</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Figure_Heatmap.png" class="img-fluid figure-img"></p>
-<figcaption>Target-specific ECIF::RF Heatmap</figcaption>
-</figure>
-</div>
-<p>The first clear finding was that <strong>target-specific AEV-PLIG::GATv2 consistently underperformed its generic counterpart</strong>. This suggests that high-capacity GNN architectures are not well-suited to the small training sets available in the target-specific regime — they simply have more capacity than the data can support.</p>
-<p>ECIF::RF told a different story. Looking at Kendall’s τ (ranking performance) and Overlap@5 (top binder retrieval), the target-specific ECIF::RF models outperformed generic AEV-PLIG for several proteins. This distinction matters because in lead optimization, scoring functions are used to prioritize the strongest binders for experimental follow-up. Correctly identifying the highest-affinity compounds is more practically useful than minimizing global prediction error. Kendall’s τ and Overlap@K are therefore the more meaningful metrics here — not RMSE or PCC alone.</p>
-</section>
-<section id="family-specific-threshold-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="family-specific-threshold-analysis">Family-Specific Threshold Analysis</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Figure_FamSpecific.png" class="img-fluid figure-img"></p>
-<figcaption>Family-specific ECIF::RF Figure</figcaption>
-</figure>
-</div>
-<p>Moving to the second aim, this figure shows ECIF::RF performance across structural similarity thresholds from 0.0 (generic) to 0.9 (highly stringent), with training set size shown on the right axis. Two findings stand out.</p>
-<p>First, <strong>the generic ECIF::RF model is never the best performing configuration for any of the five proteins.</strong> This directly supports the idea that using all available data should not be the default, and that data relevance is worth considering alongside data quantity.</p>
-<p>Second, <strong>four of the five proteins show an optimal threshold between 0.3 and 0.5</strong>, suggesting a consistent sweet spot between retaining enough data to avoid overfitting and filtering enough to preserve target-relevant signal. PFKFB3 is the clearest example: the family-specific model at threshold 0.3 achieves a <strong>178% improvement in Kendall’s τ</strong> over the generic ECIF::RF baseline, using just <strong>3% of the full training data</strong>.</p>
-<p>It is important to note that no model reaches statistical significance over others — the confidence intervals shown are 1,000-iteration bootstrapped CIs, and all comparisons should be treated as exploratory given the small congeneric series sizes.</p>
-</section>
-<section id="ranking-vs.-accuracy" class="level3">
-<h3 class="anchored" data-anchor-id="ranking-vs.-accuracy">Ranking vs.&nbsp;Accuracy</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Figure_Scatter.png" class="img-fluid figure-img"></p>
-<figcaption>Experimental-vs-Predicted Scatterplot</figcaption>
-</figure>
-</div>
-<p>These scatterplots show experimental versus predicted ΔG values for PFKFB3 across the three model types. The dotted line represents perfect prediction. None of the models are spot on, but the type of error differs in an important way.</p>
-<p>Generic AEV-PLIG::GATv2 achieves the lowest RMSE of 1.135 kcal/mol but recovers none of the five strongest binders (Overlap@5 = 0.0). The best family-specific ECIF::RF model (FS 0.3) has a substantially higher RMSE of 1.760 kcal/mol — predictions are visibly compressed around a narrow range — yet correctly identifies two of the five strongest binders and seven of the ten (Overlap@5 = 0.4, Overlap@10 = 0.7). For lead optimization, where identifying the right handful of candidates matters most, that is the more useful model.</p>
-</section>
-<section id="overall-comparison" class="level3">
-<h3 class="anchored" data-anchor-id="overall-comparison">Overall Comparison</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Figure_Comparison.png" class="img-fluid figure-img"></p>
-<figcaption>Final Model Comparison Figure</figcaption>
-</figure>
-</div>
-<p>This forest plot summarizes Kendall’s τ across all key models for each protein, with FEP+ shown as the upper performance reference. The main point here is not that any one model wins — it is that <strong>data relevance is an important and relatively underexplored axis in binding affinity prediction for lead optimization</strong>, and that accounting for it makes these considerably simpler fingerprint-based tree models competitive with AEV-PLIG and, in some cases, approach FEP+ performance — while being over <strong>100,000 times faster</strong>.</p>
-</section>
-</section>
-<section id="conclusion-and-takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion-and-takeaways">Conclusion and Takeaways</h2>
-<ul>
-<li>Target-specific models are not simply “better” — <em>better</em> depends on what you are optimizing for</li>
-<li>In lead optimization, the real task is ranking: deciding which handful of candidates are worth testing next. That is where target- and family-specific models earned their keep</li>
-<li>The data you train a model on should match the question you are asking of it, not just the pile of data you happen to have</li>
-<li>A faster and more intentional target-specific model will never have the breadth of a computationally expensive GNN or a physics-based method, but it may provide the best route for a model suited to its specific purpose</li>
-</ul>
-<p>This work is ongoing and I am currently working toward publication. If you are working in this space and want to chat, feel free to reach out!</p>
-</section>
-<section id="full-thesis-and-source-code" class="level2">
-<h2 class="anchored" data-anchor-id="full-thesis-and-source-code">Full Thesis and Source Code</h2>
-<p>My MRes thesis at Imperial College London: <a href="https://chyiricketts.onrender.com/papers/cr275_Ricketts_2026_Ballester_MResPaper.pdf">Target-Specific Binding Affinity Prediction-based Scoring Functions for Lead Optimization</a></p>
-<p><a href="https://github.com/chyiricketts/Target-Specific_BAP_Prediction">GitHub Repository</a></p>
-<p><strong>Additional reading:</strong></p>
-<ul>
-<li><a href="https://doi.org/10.1021/acs.jmedchem.5c03222">The Affinity Advantage</a> — a great overview of the importance of lead optimization and binding affinity</li>
-<li><a href="https://doi.org/10.1038/s42004-025-01428-y">Narrowing the gap between ML SFs and FEP</a> — the basis of AEV-PLIG::GATv2 used in my work</li>
-<li><a href="https://doi.org/10.1038/s42004-023-01019-9">The Maximal and Current Accuracy of Rigorous Protein-Ligand BFE Calculations</a> — the Ross FEP Benchmark dataset used for evaluation</li>
-</ul>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>I learned so much! and used those images</p>
 
 
 </section>
