@@ -84,8 +84,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data-and-methods" id="toc-data-and-methods" class="nav-link" data-scroll-target="#data-and-methods">Data and Methods</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#survival-analysis" id="toc-survival-analysis" class="nav-link" data-scroll-target="#survival-analysis">Survival Analysis</a></li>
+  <li><a href="#arsi-expression-by-subtype" id="toc-arsi-expression-by-subtype" class="nav-link" data-scroll-target="#arsi-expression-by-subtype">ARSI Expression by Subtype</a></li>
+  <li><a href="#methylation-analysis" id="toc-methylation-analysis" class="nav-link" data-scroll-target="#methylation-analysis">Methylation Analysis</a></li>
+  <li><a href="#ecm-and-mesenchymal-correlation" id="toc-ecm-and-mesenchymal-correlation" class="nav-link" data-scroll-target="#ecm-and-mesenchymal-correlation">ECM and Mesenchymal Correlation</a></li>
+  <li><a href="#cnv-analysis" id="toc-cnv-analysis" class="nav-link" data-scroll-target="#cnv-analysis">CNV Analysis</a></li>
+  <li><a href="#rppa-analysis" id="toc-rppa-analysis" class="nav-link" data-scroll-target="#rppa-analysis">RPPA Analysis</a></li>
+  </ul></li>
+  <li><a href="#conclusion-and-limitations" id="toc-conclusion-and-limitations" class="nav-link" data-scroll-target="#conclusion-and-limitations">Conclusion and Limitations</a></li>
+  <li><a href="#links" id="toc-links" class="nav-link" data-scroll-target="#links">Links</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -293,18 +311,183 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>A multi-omics investigation using TCGA data to identify ARSI as a candidate biomarker in Glioblastoma.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Glioblastoma (GBM) is the most aggressive primary brain tumour, with a 5-year survival rate of just 6.8% and an incidence of approximately 3 per 100,000. Always classified as Grade IV, GBM is fast-growing, highly infiltrative, and almost invariably recurrent. The current standard of care — surgery followed by temozolomide chemotherapy and radiotherapy — has remained largely unchanged since 2005, and even with treatment, median survival sits at around 14–16 months. Part of what makes GBM so difficult to treat is its location: the blood-brain barrier limits drug delivery, surgical margins are hard to define cleanly, and recurrent tumours are typically more resistant than the original.</p>
+<p>Molecular profiling has revealed that GBM is not one disease but four. The Classical, Mesenchymal, Proneural, and Neural subtypes have meaningfully different biology, yet in clinical practice, patients are largely treated the same way regardless of subtype. This is the gap that biomarkers can help close. A reliable prognostic biomarker — one that predicts how a patient’s disease will progress — could enable better patient stratification, guide therapeutic targeting, and ultimately move GBM treatment toward something more personalised.</p>
+<p>This study uses a multi-omics approach on TCGA GBM data to identify candidate prognostic biomarkers by subtype. Through a genome-wide survival screen across 20,530 genes, ARSI (Arylsulfatase I) emerged as a candidate of interest — particularly in the Mesenchymal subtype. ARSI is a protein that removes sulfate groups from extracellular matrix (ECM) molecules and has characteristically low expression in most normal tissues. Its upregulation in Mesenchymal GBM is biologically coherent: the Mesenchymal subtype is defined in part by aggressive ECM remodelling, and a protein that directly modifies ECM composition fits naturally into that biology. ARSI has also been identified as a prognostic biomarker in head and neck squamous cell carcinoma and thyroid carcinoma, lending further support to its potential relevance in GBM.</p>
+<p>The analyses that follow draw on RNA-seq expression, DNA methylation, copy number variation, ECM gene correlation panels, and protein-level data to build a multi-omics case for ARSI as a candidate biomarker — and to honestly assess where that case holds up and where it doesn’t.</p>
+</section>
+<section id="data-and-methods" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-methods">Data and Methods</h2>
+<p>All data was sourced from the TCGA Glioblastoma (GBM) cohort, accessed via the UCSC Xena platform, with the exception of the RPPA dataset which was downloaded manually from the TCPA portal. Six datasets were used across the analyses:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Dataset</th>
+<th style="text-align: left;">Source</th>
+<th style="text-align: left;">Notes</th>
+<th style="text-align: left;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">RNA-seq (HiSeqV2)</td>
+<td style="text-align: left;">UCSC Xena</td>
+<td style="text-align: left;">172 samples</td>
+<td style="text-align: left;">log2(TPM+1) normalised</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Methylation (450k)</td>
+<td style="text-align: left;">UCSC Xena</td>
+<td style="text-align: left;">155 samples</td>
+<td style="text-align: left;">Beta values (0–1)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Curated Survival</td>
+<td style="text-align: left;">UCSC Xena</td>
+<td style="text-align: left;">602 patients</td>
+<td style="text-align: left;">OS time + event</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Clinical / Phenotype</td>
+<td style="text-align: left;">UCSC Xena</td>
+<td style="text-align: left;">629 patients</td>
+<td style="text-align: left;">Subtype labels, age</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CNV (GISTIC2)</td>
+<td style="text-align: left;">UCSC Xena</td>
+<td style="text-align: left;">577 samples</td>
+<td style="text-align: left;">Gene-level scores</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RPPA</td>
+<td style="text-align: left;">TCPA Portal</td>
+<td style="text-align: left;">244 samples</td>
+<td style="text-align: left;">Protein expression</td>
+</tr>
+</tbody>
+</table>
+<p>Not all samples had data across every modality as analyses were performed on the overlapping subset available for each comparison. All analyses were performed in R on the Imperial College London HPC cluster.</p>
+<p>The pipeline moved through six analytical stages:</p>
 <ol type="1">
-<li>Introduction What GBM is — most aggressive primary brain tumor, 5-year survival 6.8%, Type IV The four molecular subtypes — Classical, Mesenchymal, Proneural, Neural Why biomarkers matter — patient stratification, therapeutic targeting What ARSI is — Arylsulfatase I, removes sulfate groups from ECM molecules, low expression in most tissues</li>
-<li>Data and Methods TCGA GBM datasets used Brief methods flowchart description Key analyses performed: univariate, multivariate, methylation, CNV, ECM/mesenchymal panel, RPPA</li>
-<li>Results Four focused subsections:</li>
+<li><strong>Univariate Cox regression</strong> across all 20,530 genes to screen for survival-associated genes, with Benjamini-Hochberg FDR correction for multiple testing</li>
+<li><strong>Multivariate Cox regression</strong> adjusting for age at diagnosis, the only clinical variable found to be independently prognostic, repeated within each molecular subtype</li>
+<li><strong>Methylation probe analysis</strong> using Pearson correlation between CpG beta values and ARSI expression across 65 overlapping samples, with probe annotation from the Illumina 450k manifest</li>
+<li><strong>CNV analysis</strong> classifying samples as amplified or non-amplified by GISTIC2 score, with Kaplan-Meier survival comparison between groups</li>
+<li><strong>ECM and Mesenchymal gene panel analysis</strong> using Spearman correlation matrices between ARSI and curated panels of known ECM and Mesenchymal GBM marker genes, visualised as clustered heatmaps</li>
+<li><strong>RPPA analysis</strong> using limma with ARSI RNA expression as a continuous covariate to identify co-expressed genes at the protein level</li>
 </ol>
-<p>3a. Survival Analysis</p>
-<p>Univariate and multivariate Cox regression results ARSI is most significant in the Mesenchymal subtype Kaplan-Meier curves figure 3b. ARSI Expression by Subtype</p>
-<p>Highest in Mesenchymal — consistent with survival findings Boxplot figure 3c. Methylation</p>
-<p>cg12281328 hypomethylation driving upregulation Scatterplot figure 3d. ECM and Mesenchymal Correlation</p>
-<p>High correlation with known ECM and Mesenchymal genes Heatmap figures 4. Conclusion and Limitations ARSI as a candidate biomarker — particularly in Mesenchymal GBM Results are exploratory — high FDR, limited statistical significance Future directions: external validation, wet-lab functional studies, multi-omics integration 5. Links Slide deck as downloadable PDF TCGA data source</p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="survival-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="survival-analysis">Survival Analysis</h3>
+<p>To identify candidate prognostic biomarkers, a genome-wide univariate Cox regression was run across all 20,530 genes in the TCGA GBM RNA-seq dataset. ARSI emerged from this screen with a hazard ratio of HR=1.169 (95% CI: 1.062–1.287, p=0.00148). This signifys that higher ARSI expression is associated with an approximately 17% increased risk of death at any given time point. While the p-value is nominally significant, the FDR-corrected value of 0.176 reflects the reality of genome-wide testing: when you run 20,530 simultaneous tests, even real signals don’t always survive correction. ARSI is best understood here as a candidate that warrants further investigation.</p>
+<p>What made ARSI genuinely interesting was what happened when the analysis was stratified by molecular subtype. In the Mesenchymal subtype, the signal strengthened considerably: univariate HR=1.399 (95% CI: 1.174–1.666, p=0.00017) and after adjusting for age in the multivariate model (HR=1.397, p=0.00024). The near-identical hazard ratios before and after age adjustment tell an important story: this is not simply an age effect. ARSI carries independent prognostic information in Mesenchymal GBM. In the Classical, Neural, and Proneural subtypes, no meaningful association was observed.</p>
+<p>The Kaplan-Meier curves below make this pattern visually clear. Samples were split at the median ARSI expression level into high and low groups. In the overall cohort and Mesenchymal subtype, the high-expression group shows markedly worse survival as the curves separate early and the gap is sustained. In the Proneural and Neural subtypes, the curves are nearly indistinguishable. This subtype-specificity is not just a statistical observation as it is consistent with the existing literature surrounding GBM subtypes. The Mesenchymal subtype is the most aggressive and invasive of the four, characterised by extensive extracellular matrix remodeling. That ARSI, a protein which directly modifies ECM molecules, shows its strongest prognostic signal precisely in this subtype is a coherent and biologically motivated finding.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_Survival.png" class="img-fluid figure-img"></p>
+<figcaption>Kaplan-Meier Survival Curve Figure</figcaption>
+</figure>
+</div>
+</section>
+<section id="arsi-expression-by-subtype" class="level3">
+<h3 class="anchored" data-anchor-id="arsi-expression-by-subtype">ARSI Expression by Subtype</h3>
+<p>To contextualise the survival findings, ARSI expression was compared across the four GBM molecular subtypes. The pattern is striking and consistent with what the survival analysis suggested.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_ExpressionBySubtype.png" class="img-fluid figure-img"></p>
+<figcaption>ARSI Expression by Subtype Boxplot</figcaption>
+</figure>
+</div>
+<p>ARSI expression is highest in the Mesenchymal subtype and lowest in Proneural, with Classical and Neural sitting in between. Importantly, this is not simply a difference in median values, the entire Mesenchymal distribution shifts upward. Even the lower quartile of Mesenchymal patients shows higher ARSI expression than the median Proneural patient, indicating a population-level difference rather than a handful of outliers driving the result. A Kruskal-Wallis test confirmed that these differences are statistically significant (χ2=45.49, df=3, p=7.27E−10). The non-parametric test was chosen over ANOVA given the unequal subtype group sizes and non-normal expression distributions typical of RNA-seq data.</p>
+<p>Taken together with the survival analysis, this result strengthens the case for ARSI as a Mesenchymal-specific signal. The survival analysis showed that high ARSI expression predicts worse outcomes — but specifically in Mesenchymal patients. The expression analysis now shows that Mesenchymal patients are also the ones with the highest ARSI expression to begin with. These two findings are independent but mutually reinforcing: ARSI is most expressed in the subtype where it is most prognostically damaging.</p>
+<p>It is worth being clear about what this result alone cannot establish. A gene can be differentially expressed across subtypes without having any clinical relevance — subtype differences in expression are common and do not on their own constitute a biomarker. The expression analysis is meaningful here precisely because it is paired with the survival findings. Expression difference plus prognostic association is a much stronger signal than either alone.</p>
+</section>
+<section id="methylation-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="methylation-analysis">Methylation Analysis</h3>
+<p>The survival and expression analyses established that ARSI is associated with worse outcomes in Mesenchymal GBM — but not why its expression is elevated in the first place. The methylation analysis begins to answer that question, and it contains the strongest statistical result in this study.</p>
+<p>Twelve CpG probes mapped to the ARSI gene locus were identified from the Illumina 450k annotation and tested for correlation with ARSI RNA expression across the 65 samples with both data types available. After FDR correction, one probe survived: cg12281328 (r=−0.396, p=1.08E−3, FDR=0.013).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_MethylationScatter.png" class="img-fluid figure-img"></p>
+<figcaption>Methylation of cg12281328 site Scatterplot Figure</figcaption>
+</figure>
+</div>
+<p>The negative correlation tells a coherent biological story. cg12281328 sits in the first exon of ARSI within a CpG Island, where methylation is known to have a strong silencing effect on transcription. When this site is hypomethylated, the chromatin is more accessible and transcription can proceed more freely, resulting in higher ARSI expression. When it is hypermethylated, expression is suppressed. The scatterplot makes this relationship visible where patients in the upper left driving the survival signal identified show low methylation and high ARSI RNA expression.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_MethylationBoxes.png" class="img-fluid figure-img"></p>
+<figcaption>Methylation of cg12281328, cg10941067, and cg06873106 Boxplot Figure</figcaption>
+</figure>
+</div>
+<p>The boxplots stratified by ARSI expression group (high vs.&nbsp;low, median split) reinforce this pattern. The high-expression group shows consistently lower methylation at cg12281328 than the low-expression group. Two additional probes, cg06873106 and cg10941067, showed nominally significant correlations but did not survive FDR correction. Notably, cg10941067 showed a positive correlation with expression, which is consistent with its location in the gene body rather than the regulatory region where gene body methylation is known to behave differently and can sometimes associate with increased rather than decreased expression.</p>
+<p>This is the only result in the study to survive multiple testing correction, and it points toward a specific epigenetic mechanism: hypomethylation at cg12281328 as a driver of ARSI upregulation in GBM. That said, the analysis was limited to 65 samples, the subset with both RNA-seq and methylation data available, which constrains statistical power and confidence. Replication in an independent cohort such as the CGGA would be an important next step.</p>
+</section>
+<section id="ecm-and-mesenchymal-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="ecm-and-mesenchymal-correlation">ECM and Mesenchymal Correlation</h3>
+<p>The survival and expression results established that ARSI is prognostically relevant and most highly expressed in Mesenchymal GBM. The methylation analysis suggested a mechanism for its upregulation. What remained was to ask whether ARSI is actually embedded in the biological programmes that define the Mesenchymal subtype — or whether its association is purely statistical.</p>
+<p>To investigate this, Spearman correlation matrices were computed between ARSI and two curated gene panels: a Mesenchymal GBM marker panel (CD44, CHI3L1, MET, TGFB1, THBS1, S100A10, S100A11) and an ECM remodelling panel (COL6A1, COL1A1, FN1, VCAN, MMP2, TIMP1, LAMA4). Spearman correlation was chosen for its robustness to outliers and non-linear relationships — both common in RNA-seq expression data.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_GenePanel.png" class="img-fluid figure-img"></p>
+<figcaption>ARSI Gene Panel Heatmap Figure</figcaption>
+</figure>
+</div>
+<p>Both heatmaps are predominantly red. ARSI shows consistent positive correlations with genes across both panels and clusters with them under hierarchical grouping — meaning ARSI co-varies with these genes across patients in a way that mirrors how the panel genes co-vary with each other. When ARSI expression is high, so too are CD44, CHI3L1, MET, FN1, and MMP2. When it is low, these genes tend to be lower as well.</p>
+<p>This result does more than confirm a statistical association — it places ARSI within a coherent biological context. The Mesenchymal panel genes are established markers of the most aggressive and invasive GBM subtype. The ECM panel genes are directly involved in the extracellular matrix remodelling that characterises Mesenchymal tumour behaviour. ARSI, as an arylsulfatase that modifies ECM substrates, co-expressing with both of these programmes is not surprising — but seeing it empirically in patient data is what makes it credible. It suggests ARSI is not an incidental bystander but a participant in the same biological programme driving Mesenchymal GBM aggression.</p>
+<p>Taken across all four analyses so far, a consistent picture is emerging: ARSI is most expressed in Mesenchymal GBM, most prognostically significant there, epigenetically upregulated via hypomethylation, and co-expressed with the core Mesenchymal and ECM gene programmes. Each line of evidence is independent, and they all point in the same direction.</p>
+</section>
+<section id="cnv-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="cnv-analysis">CNV Analysis</h3>
+<p>Not every result in a multi-omics investigation points in the same direction, and that is informative in itself. The CNV analysis is the clearest example of this in the study — and arguably one of the more useful findings mechanistically.</p>
+<p>Copy number variation refers to regions of the genome where the number of gene copies differs between individuals. In cancer, gene amplification — having more copies than the diploid baseline — can drive overexpression and is a common mechanism of oncogene activation. If ARSI upregulation in GBM were primarily driven by genomic amplification, we would expect amplified patients to show worse survival than non-amplified patients.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figure_CNV.png" class="img-fluid figure-img"></p>
+<figcaption>Copy Number Variation KM Curve Figure</figcaption>
+</figure>
+</div>
+<p>That is not what the data shows. Samples were classified as amplified (GISTIC2 score &gt; 0, n = 250) or not amplified (score ≤ 0, n = 337), and the resulting Kaplan-Meier curves are nearly indistinguishable. The two groups track closely across the entire follow-up period, with no meaningful separation in survival outcomes. Copy number status alone does not appear to drive the ARSI survival signal.</p>
+<p>This null result is worth reporting precisely because of what it rules out. Taken alongside the methylation finding, it points toward a more specific mechanistic picture: ARSI upregulation in GBM is more likely driven by epigenetic regulation — specifically hypomethylation at cg12281328 — than by genomic amplification. The expression is there, the methylation signal is there, and the CNV signal is not. That combination of findings is more informative than any single positive result alone.</p>
+</section>
+<section id="rppa-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="rppa-analysis">RPPA Analysis</h3>
+<p>The final analysis used the RPPA dataset to identify genes whose expression co-varies with ARSI across shared samples. One important clarification upfront: ARSI is not directly measured in the TCPA RPPA panel. Rather than treating this as a dead end, ARSI RNA expression was used as a continuous covariate in a limma linear model applied to the RNA-seq data across the 172 samples shared between datasets. The question being asked was not “what is ARSI protein expression?” but rather “what other genes are most tightly co-expressed with ARSI across this cohort?”</p>
+<p>limma was chosen for its moderated t-statistic approach via eBayes() — by borrowing variance information across all genes rather than estimating it gene-by-gene, it produces more reliable results in the relatively small sample sizes typical of TCGA cohorts.</p>
+<p>[RPPA results table]</p>
+<p>The top hit is ARSI itself (t=584.89, adj.p=1.64×10−134, logFC=1) — which is expected and serves as a sanity check that the model is working correctly. The biologically interesting findings are the genes immediately below it. TIMP1, ANXA2, and ANXA2P2 emerge as the strongest co-expressed genes. TIMP1 is particularly noteworthy — it appeared independently in the ECM gene panel analysis earlier in this study, and its reappearance here as a top hit in a completely separate analysis is convergent evidence pointing to the same biological signal. ANXA2 and its pseudogene ANXA2P2 are involved in ECM interactions and have been implicated in tumour invasion — consistent with the Mesenchymal biology this study has been building toward.</p>
+<p>The convergence across analyses is worth stepping back to appreciate. TIMP1 emerged from curated literature-based gene panels and from an unbiased co-expression screen. That two independent analytical approaches identify the same gene alongside ARSI strengthens the case that these associations are not statistical noise but reflect real co-regulatory biology.</p>
+</section>
+</section>
+<section id="conclusion-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-and-limitations">Conclusion and Limitations</h2>
+<p>This study set out to identify a candidate prognostic biomarker for Glioblastoma using a multi-omics approach on TCGA data. Across six independent analyses, a consistent picture emerged: ARSI is most highly expressed in Mesenchymal GBM, associates with worse survival in that subtype, appears to be epigenetically upregulated via hypomethylation at cg12281328, and co-expresses with the core ECM and Mesenchymal gene programmes that define the most aggressive GBM subtype.</p>
+<p>The mechanistic chain is coherent: lower methylation drives higher ARSI expression, higher expression associates with worse survival, and ARSI co-varies with the ECM remodelling genes that characterise Mesenchymal tumour behaviour. If validated, this could contribute to more accurate subtype-specific prognosis and potentially inform therapeutic targeting of the ECM pathways ARSI participates in.</p>
+<p>That said, the limitations of this study are real and worth stating clearly.</p>
+<ul>
+<li>Statistical significance: ARSI does not survive FDR correction in the survival analyses. It is a candidate biomarker supported by consistent trends across multiple data types — not a confirmed hit. The high FDR is an honest reflection of the multiple testing burden of genome-wide screening.</li>
+<li>Sample size: The TCGA GBM cohort is small by genomic standards. The methylation analysis was limited to 65 overlapping samples, and subtype-stratified analyses were smaller still. This constrains statistical power throughout.</li>
+<li>Observational design: Everything here is correlational. Showing that ARSI associates with survival and co-expresses with ECM genes does not establish causality. Functional wet-lab studies — CRISPR knockdown, overexpression experiments — would be needed to determine whether ARSI actively contributes to Mesenchymal GBM aggression or is simply a passenger in that biological programme.</li>
+<li>Single cohort: All data comes from TCGA. External validation in an independent cohort such as the CGGA is an essential next step before drawing stronger conclusions.</li>
+</ul>
+<p>The most important future directions are external validation, functional studies, and true multi-omics integration — combining methylation, CNV, and expression data into a unified model rather than analysing each modality separately. GBM remains one of the hardest cancers to treat, and progress will come from exactly this kind of systematic, multi-layered investigation — even when the results are exploratory rather than definitive.</p>
+</section>
+<section id="links" class="level2">
+<h2 class="anchored" data-anchor-id="links">Links</h2>
+<p><a href="https://github.com/chyiricketts/TCGA_NovelBiomarker">GitHub Repository</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

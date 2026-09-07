@@ -74,7 +74,6 @@
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   color: var(--muted-text);
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   border-bottom: 1px solid var(--border);
 }
@@ -90,7 +89,7 @@
 .expertise-col ul li {
   font-size: 1.45rem;
   color: var(--muted-text);
-  padding: 0.6rem 0;
+  padding: 0.2rem 0;
   border-bottom: 1px solid var(--border-shadow);
 }
 
@@ -101,7 +100,7 @@
 /* Project cards */
 .project-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -194,6 +193,12 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .project-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .expertise-table {
     grid-template-columns: 1fr;
