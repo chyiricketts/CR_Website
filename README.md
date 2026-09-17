@@ -1,6 +1,8 @@
 # Personal Website Project: Computational Biology Portfolio
 ## Chyi Ricketts
 
+Hi there! I'm Chyi Ricketts, a recent Master's graduate in Cancer Informatics at Imperial College London. I'm a computational biologist focused on cancer research, specifically using computational methods to turn the flood of biological data we now generate into something clinically meaningful. My work so far spans bioinformatics and drug discovery, with a foundation in wet-lab molecular biology that keeps me grounded in the biology behind the code. I'm currently looking for the right opportunity to contribute and keep learning. Always happy to connect.
+
 ## Overview
 This project is a personal website showcasing my experiences as a Computational Biology student. The website includes details about my academic background, research experience, and career aspirations. It is built using HTML, CSS, and JavaScript and incorporates responsive design to ensure accessibility across devices.
 
