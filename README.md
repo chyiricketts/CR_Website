@@ -26,13 +26,12 @@ Clone this repository to your local machine:
 
 ## Credits and References
 This project was inspired and supported by various resources:
-- ChatGPT: Assisted in understanding concepts and debugging code. No direct copying and pasting was performed.
 - W3Schools
 - Codecademy
 - https://www.christyannejones.com/
 - https://www.kevinmbeaulieu.com/
 
 ## Feedback and Contributions
-If you have suggestions or find any issues with the website, feel free to open an issue or submit a pull request on the repository.
+If you have suggestions or find any issues with the website, feel free to contact me.
 
 # Thank you for checking out my project!
