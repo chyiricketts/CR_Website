@@ -12,17 +12,13 @@ Interactive sections highlighting academic projects, research experience, and sk
 Integrated visuals such as animations written in javascript and photos to enhance the user experience.
 Accessible design principles to ensure usability for all audiences.
 
-## Setup Instructions
-### Prerequisites
-1. A web browser (e.g., Chrome, Firefox, Edge).
-2. Visual Studio Code or another text editor (optional, for development).
-
-### Running Locally
-Clone this repository to your local machine:
-1. git clone https://github.com/<chyiricketts>/<Personal_Website>.git
-2. Navigate to the project directory:
-3. cd <Personal_Website>
-4. Open the index.html file in your browser to view the website.
+## Project Portfolio
+- Biomarker Project
+- Burrows–Wheeler Transform
+- GNNs for Lead Optimization
+- siRNA gene knockdown
+- Cellular Segmentation
+- Syncronized Clocks of ERK expression
 
 ## Credits and References
 This project was inspired and supported by various resources:
