@@ -91,6 +91,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#data-and-methods" id="toc-data-and-methods" class="nav-link" data-scroll-target="#data-and-methods">Data and Methods</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#sources-and-additional-reading" id="toc-sources-and-additional-reading" class="nav-link" data-scroll-target="#sources-and-additional-reading">Sources and Additional Reading</a></li>
   </ul>
@@ -312,6 +313,10 @@ ul.task-list li input[type="checkbox"] {
 <p>The MAPK/ERK Pathway, aka the Ras-Raf-MEK-ERK pathway, is a well-known growth and development pathway that incoporates notable proteins such as MAPK, EGFR, EGF, MEK, RAS, and ERK. Mutations in this pathway are highly associated with uncontrolled growth in cancer cells.</p>
 <p>The MAPK/ERK Pathway, aka the Ras-Raf-MEK-ERK pathway, is a well-known growth and development pathway that incoporates notable proteins such as MAPK, EGFR, EGF, MEK, RAS, and ERK. Mutations in this pathway are highly associated with uncontrolled growth in cancer cells.</p>
 </section>
+<section id="data-and-methods" class="level2">
+<h2 class="anchored" data-anchor-id="data-and-methods">Data and Methods</h2>
+<p>Imaging: 10 fish (5 spry2-injected, 5 controls), 8 timepoints over about 33 h from about 8 dpf, max projections Cell segmentation: Cellpose cyto3 baseline, then fine-tuned on 64 → 16,106 masks Nuclear segmentation: a separately fine-tuned nuclei model (the plot you already have) Evaluation: the IoU score and count ratio, using your drawing as the figure ERK readout: cyto-ring ÷ nucleus ratio per cell, reusing the drawing Segment tracking: manually placed boundaries, around 10-12 per image, segmented vs unsegmented regions based on visual cues</p>
+</section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Cellpose was able to segment whole cells and nuclei from a confocal microscopy image of zebrafish embryo notochords with above 80% accuracy. This method allowed us to efficiently investigate the oscillating characteristics of ERK expression.</p>
@@ -319,6 +324,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="sources-and-additional-reading" class="level2">
 <h2 class="anchored" data-anchor-id="sources-and-additional-reading">Sources and Additional Reading</h2>
 <p><strong>Additional reading:</strong> Preprint: https://pmc.ncbi.nlm.nih.gov/articles/PMC12424975/</p>
+<p>Bagnat Lab, Di Talia Lab, Priyom, DST Spark funding</p>
 
 
 </section>
