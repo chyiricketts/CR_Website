@@ -89,7 +89,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#data-and-methods" id="toc-data-and-methods" class="nav-link" data-scroll-target="#data-and-methods">Data and Methods</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
@@ -303,7 +304,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Understanding the development of 3-5dpf zebrafish embryos supplemented with cellular segmentation software, Cellpose, via ERK Expression.</p>
+<p>Understanding the development of zebrafish embryos 8dpf supplemented with cellular segmentation software, Cellpose, via ERK Expression.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>How does spinal formation happyem during embryogenesis? The Bagnat Lab, we utilized zebrafish 8 days post fertilization, fluorescent protein signalling with KTR (kinase Translocation Receptors), confocal imaging, and Cellpose, a DL cellular segmentation software, to understand that there is a synchronzied expression of ERK across the whole notochord during embryo development. My role in this project included creating ground truth image files and optimizing for the model training on Cellpose, increasing the IoU score from 0.75 to 0.83 for automatic detection, significantly speeding up the process of detecting protein expression.</p>
+</section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>Where does the spine’s repeating pattern come from, and what keeps cells in sync while it forms? In the developing spine, or vertebral column, we a see complex yet highly coordinated pathway from a sheath, an epithelial layer of cells, to somites, segmenting in order to recruit osteocytes, finally forming the alternating pattern of IVD (Intervertebral disks) that we see in an adult body. This study focuses on using zebrafish 3-5 days post fertilization (dpf) to study how ERK (Extracellular Signal-Regulated Kinase) activity oscillates in notochord cells, and how is it synchronized?</p>
@@ -311,7 +316,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p>The MAPK/ERK Pathway, aka the Ras-Raf-MEK-ERK pathway, is a well-known growth and development pathway that incoporates notable proteins such as MAPK, EGFR, EGF, MEK, RAS, and ERK. Mutations in this pathway are highly associated with uncontrolled growth in cancer cells.</p>
-<p>The MAPK/ERK Pathway, aka the Ras-Raf-MEK-ERK pathway, is a well-known growth and development pathway that incoporates notable proteins such as MAPK, EGFR, EGF, MEK, RAS, and ERK. Mutations in this pathway are highly associated with uncontrolled growth in cancer cells.</p>
+<p>The MAPK/ERK Pathway is especially known for its role in growth and development. It is also known as the Ras-Raf-MEK-ERK pathway. The entire pathway contains activation of Ras followed by a kinase cascade, allowing opportunities for feedback regulation and signal amplifiation.</p>
+<p>Mutations in the MAPK/ERK pathway are most commonly seen in melanoma and Hodgkin disease.</p>
 </section>
 <section id="data-and-methods" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-methods">Data and Methods</h2>
