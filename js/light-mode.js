@@ -12,7 +12,7 @@ function switchCanvasForTheme(isLight) {
 // Apply saved theme preference on every page load, and start the matching
 // canvas animation. Defaults to dark (the current default) if nothing has
 // been saved yet.
-const savedIsLight = localStorage.getItem('theme') === 'light';
+const savedIsLight = localStorage.getItem('theme') === 'dark';
 document.body.classList.toggle('light-theme', savedIsLight);
 switchCanvasForTheme(savedIsLight);
 
