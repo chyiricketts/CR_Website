@@ -1,8 +1,4 @@
-// "Dark mode" canvas animation: atoms, hexagons, triangles, and the bonds
-// drawn between nearby ones. Exposes start()/stop() so light-mode.js can
-// switch it in and out against canvas-shapes.js (LightCanvas) without both
-// running - and without the two scripts' globals colliding, since
-// everything here lives inside this IIFE.
+// Dark mode canvas animation
 window.DarkCanvas = (function () {
   let canvas, context;
   let shapesArr = [];
@@ -10,6 +6,7 @@ window.DarkCanvas = (function () {
   const spawnRate = 0.10;
   let running = false;
   let frameId = null;
+  let lastTime = null;
 
   const requestAnimFrame =
     window.requestAnimationFrame ||
@@ -128,7 +125,12 @@ window.DarkCanvas = (function () {
   function animate() {
     if (!running) return;
 
-    if (Math.random() < spawnRate) spawnShape(true);
+    // Scale movement by time since last frame (1 = one 60fps frame)
+    const now = performance.now();
+    const dt = lastTime === null ? 1 : Math.min((now - lastTime) / (1000 / 60), 3);
+    lastTime = now;
+
+    if (Math.random() < spawnRate * dt) spawnShape(true);
 
     context.save();
     context.setTransform(1, 0, 0, 1, 0, 0);
@@ -142,9 +144,9 @@ window.DarkCanvas = (function () {
       drawShape(shape);
 
       let speed = (1 - shape.depth * shape.depth) / 3 + 0.05;
-      shape.x += speed * Math.cos(shape.dir);
-      shape.y -= speed * Math.sin(shape.dir);
-      shape.angle += shape.angspeed;
+      shape.x += speed * Math.cos(shape.dir) * dt;
+      shape.y -= speed * Math.sin(shape.dir) * dt;
+      shape.angle += shape.angspeed * dt;
 
       let size = (1 - shape.depth) * 10 + 5;
       if (
@@ -167,6 +169,7 @@ window.DarkCanvas = (function () {
     if (!canvas) return;
     context = canvas.getContext("2d");
     running = true;
+    lastTime = null;
 
     resize();
     shapesArr = [];

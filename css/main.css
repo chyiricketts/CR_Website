@@ -282,6 +282,42 @@ main {
   margin-bottom: 10px;
 }
 
+.info-project {
+  color: var(--text);
+  font-weight: bold;
+  margin: 1.25rem 0 0;
+}
+
+/* Education degree and honors */
+.info-degree {
+  color: var(--text);
+  font-style: italic;
+  margin: 0 0 4px;
+}
+
+.info-item .info-meta:has(+ .info-honor) {
+  margin-bottom: 6px;
+}
+
+.info-honor {
+  color: var(--text);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Links inside experience entries */
+.info-item a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.info-item a:hover {
+  text-decoration-color: currentColor;
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 8vw;

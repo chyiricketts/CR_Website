@@ -18,7 +18,7 @@
   --text: #ffffff;          /* dark mode: white text */
   --text_invert: #ffffff;   /* dark mode: also white (navbar links) */
   --muted-text: rgba(255, 255, 255, 0.65);
-  --muted-text-invert: rgba(255, 255, 255, 0.65); /* muted version of --text_invert - stays constant like it does, for nav/footer text on the always-dark surface */
+  --muted-text-invert: rgba(255, 255, 255, 0.65);
 
   /* Accent system */
   --text-glow: rgba(120,200,255,0.6);
@@ -31,11 +31,7 @@
   --glow: rgba(120, 200, 255, 0.6);
 }
 
-/* Theme colors only animate once the user has actually clicked the toggle
-   (see light-mode.js, which adds this class right before the first
-   toggle). Without this gate, every page load would flash the default
-   dark styles for a frame, then visibly transition into the saved theme -
-   this way, initial load is instant and only a real toggle animates. */
+/* Theme transition (only after the toggle is clicked) */
 body.theme-transition,
 body.theme-transition * {
   transition: background-color 0.6s ease, background 0.6s ease,
@@ -50,9 +46,9 @@ body.theme-transition * {
   --surface: #5a5a5d;
 
   --text: #0b1220;          /* light mode: dark text */
-  --text_invert: #ffffff;   /* light mode: STAYS white (navbar on dark surface) */
+  --text_invert: #ffffff;   /* light mode: white (navbar) */
   --muted-text: rgba(11, 18, 32, 0.65);
-  --muted-text-invert: rgba(255, 255, 255, 0.65); /* STAYS the same as dark mode, matching --text_invert */
+  --muted-text-invert: rgba(255, 255, 255, 0.65);
 
   /* Accent system */
   --text-glow:  rgba(91, 155, 213, 0.25);

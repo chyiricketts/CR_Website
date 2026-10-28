@@ -33,48 +33,76 @@
         <div class="info-inner">
           <h2>Experience</h2>
 
-            <div class="info-item">
-            <h3>Postgraduate Researcher at Boston University</h3>
-            <p class="info-meta">Zhang Lab • October 2026 – Present </p>
+          <div class="info-item">
+            <h3>Bioinformatics Analyst at Boston University</h3>
+            <p class="info-meta">Zhang Lab • October 2026 – Present</p>
             <ul>
-              <li>Benchmarking Cellular Segmentation Software using NuCLS dataset</li>
+              <li>Benchmarking cellular segmentation software on the NuCLS dataset</li>
               <li>H&E imaging and spatial transcriptomics analysis</li>
             </ul>
           </div>
 
-
           <div class="info-item">
             <h3>Postgraduate Researcher at Imperial College London</h3>
-            <p class="info-meta">Ballester Lab • September 2025 – September 2026 </p>
+            <p class="info-meta">Ballester Lab • September 2025 – September 2026</p>
+
+            <p class="info-project"><a href="blog/Biomarker_Project/">Project: Multi-Omics Identification of a Novel Prognostic Biomarker in Glioblastoma Subtypes</a></p>
             <ul>
-              <li>Multi-omics identification of a novel prognostic biomarker in glioblastoma subtypes</li>
-              <li>Identification of Novel Mesenchymal Glioblastoma Biomarker ARSI, Arylsulfatase family member</li>
-              <li>Master's thesis research on ML scoring functions for cancer drug discovery across five protein targets</li>
-              <li>Target Specific Scoring functions balancing data relevance and data quantity</li>
-              <li>Wide range of protein and small molecule fingerprint representations including ECFP, ECIF, and PLEC</li>
-              <li>Trained Graph Neural Network GATv2 on Crystallography and Docking determined Binding Affinity Predictions</li>
-              <li>Publication in Progress.</li>
+              <li>Applied multi-omics analysis (RNA-seq, DNA methylation, CNV, RPPA) to TCGA glioblastoma cohorts (n=600+), using Cox regression and Kaplan-Meier survival analyses to nominate ARSI as a candidate prognostic biomarker (<a href="https://github.com/chyiricketts/TCGA_NovelBiomarker" target="_blank">code</a>)</li>
+              <li>Identified subtype-specific survival associations in Mesenchymal GBM and characterized epigenetic upregulation of ARSI via CpG hypomethylation analysis</li>
             </ul>
-          </div>
 
-
-          <div class="info-item">
-            <h3>Undergraduate Researcher at Duke University</h3>
-            <p class="info-meta">Bagnat Lab and Di Talia Lab • April 2022 – July 2022</p>
+            <p class="info-project"><a href="blog/MRes_Project/">Master's Thesis: Target-Specific Binding Affinity Prediction Scoring Functions in Lead Optimization</a></p>
             <ul>
-              <li>Optimizing cellular segmentation for DST (Duke Science and Technology) Project "Synchronized Clocks in Zebrafish Patterning"</li>
-              <li>Applied Knock-in Tagging methods to examine protein participation in nutrient packaging/transport in the interstitial lumen</li>
-              <li>Validated constructs via embryo injection, electrophoresis gels, PCR, and fluorescent microscopy screening</li>
+              <li>Curated and preprocessed large-scale protein–ligand datasets (~100,000 complexes) across five cancer drug targets with RDKit and ECFP6 Tanimoto fingerprints</li>
+              <li>Built reproducible HPC benchmarking pipelines evaluating 100+ protein–ligand models across featurization schemes (AEV-PLIG, ECIF, PLEC) and learning algorithms (GATv2, XGBoost, Random Forest, SVM) (<a href="https://github.com/chyiricketts/Target-Specific_BAP_Prediction" target="_blank">code</a>)</li>
+              <li>Characterized a generalization–specificity trade-off in scoring functions for descriptor-based models and GNNs</li>
             </ul>
           </div>
 
           <div class="info-item">
             <h3>Student Research Scholar at Duke Kunshan University</h3>
             <p class="info-meta">Huang Lab • May 2023 – May 2025</p>
+
+            <p class="info-project"><a href="blog/SW_Project/">Thesis: Integrating Segmentation Software for Automated Cell Image Analysis in a Web-based Application</a></p>
             <ul>
-              <li>Conducted quantitative benchmarking of 8 image analysis tools, including ML/DL segmentation methods</li>
-              <li>Developed a web-based tool for interactive visualization and analysis of post-segmentation image outputs</li>
-              <li>Performed supporting RNAi-based gene knockdown experiments in HeLa cells for functional validation</li>
+              <li>Quantitatively benchmarked generic and fine-tuned Cellpose, ilastik, and SAM on self-generated RNAi-based HeLa cell imaging data using custom computational metrics</li>
+              <li>Developed an interactive <a href="https://sw-cellvis.onrender.com/" target="_blank">web-based visualization tool</a> for post-segmentation image analysis (<a href="https://github.com/chyiricketts/SW_CellVis" target="_blank">code</a>)</li>
+              <li>Authored a successful grant proposal to the Kunshan Supercomputing Center, securing 9 HPC nodes for the benchmarking work</li>
+            </ul>
+
+            <p class="info-project"><a href="blog/siRNA_Project/">Project: Pro-siRNA Library Construction for RNAi Genetic Screening</a></p>
+            <ul>
+              <li>Constructed a pro-siRNA library targeting multiple genes in parallel, streamlining an established purification protocol</li>
+              <li>Tested library knockdown of EGFP in HeLa-EGFP cells by reverse transfection, imaging with high-content screening and validating by flow cytometry</li>
+            </ul>
+          </div>
+
+          <div class="info-item">
+            <h3>Undergraduate Researcher at Duke University</h3>
+            <p class="info-meta">Di Talia Lab & Bagnat Lab • April 2022 – July 2024</p>
+
+            <p class="info-project">Project: DST Spark — Synchronized Clocks in Zebrafish Patterning</p>
+            <p class="info-meta">Di Talia Lab • May 2024 – July 2024</p>
+            <ul>
+              <li>Trained and benchmarked 10 Cellpose models to analyze oscillating ERK expression in embryonic zebrafish notochords</li>
+              <li>Imaged zebrafish notochords 1–8 days post-fertilization and analyzed oscillating ERK expression from confocal images</li>
+            </ul>
+
+            <p class="info-project">Project: Protein Function in the Zebrafish Interstitial Lumen</p>
+            <p class="info-meta">Bagnat Lab • April 2022 – June 2022</p>
+            <ul>
+              <li>Applied CRISPR/Cas9-assisted knock-in tagging to examine proteins involved in packaging and transporting nutrients in the zebrafish interstitial lumen</li>
+              <li>Performed embryo microinjection, PCR, gel electrophoresis, and fluorescence microscopy screening of injected embryos</li>
+              <li>Maintained mutant zebrafish lines and laboratory stocks using standard aseptic technique</li>
+            </ul>
+          </div>
+
+          <div class="info-item">
+            <h3>Student Worker at DNAS (Division of Natural and Applied Sciences)</h3>
+            <p class="info-meta">Duke Kunshan University • May 2023 – December 2023</p>
+            <ul>
+              <li>Updated and maintained the DNAS departmental website, implementing user feedback-driven improvements to interface design, page load efficiency, and site structure using WordPress, Python, HTML/CSS, and JS</li>
             </ul>
           </div>
 
@@ -82,16 +110,8 @@
             <h3>Research Assistant at IRB (Institute for Research in Biomedicine) Barcelona</h3>
             <p class="info-meta">Fraticelli Lab • October 2022 – December 2022</p>
             <ul>
-              <li>Evaluated the extent of cell toxicity for varying doses of up to 8 cancer drugs on cells</li>
-              <li>Assisted in procedures that involved handling live mice to study stem cells and their relation to cancer</li>
-            </ul>
-          </div>
-
-          <div class="info-item">
-            <h3>Student Worker DNAS (Division of Natural and Applied Sciences)</h3>
-            <p class="info-meta">May 2023 – December 2023</p>
-            <ul>
-              <li>Updated and maintained the DNAS departmental website, implementing user feedback-driven improvements to interface design, page load efficiency, and site structure using WordPress, Python, HTML/CSS, and JS</li>
+              <li>Evaluated cell toxicity across varying doses of up to 8 cancer drugs</li>
+              <li>Assisted with procedures involving live mice to study stem cells and their relation to cancer</li>
             </ul>
           </div>
 

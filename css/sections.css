@@ -1,6 +1,4 @@
-/* Wraps a run of stacked .info-section blocks (e.g. on domain pages) so the
-   background gradient fades once across all of them, instead of each
-   .info-section repeating its own gradient and creating a banded look. */
+/* Shared gradient across stacked sections */
 .domain-sections-wrap {
   position: relative;
   z-index: 2;
@@ -15,11 +13,7 @@
   background: none;
 }
 
-/* Sections inside the same wrap already read as one continuous panel
-   (the gradient banding is already handled above), so the shared boundary
-   between them doesn't need the full 80px hero-style padding on both
-   sides - just the very top (after the hero) and very bottom (before the
-   footer) do. */
+/* Tighter spacing between stacked sections */
 .domain-sections-wrap .info-section:not(:last-child) {
   padding-bottom: 32px;
 }
@@ -28,10 +22,7 @@
   padding-top: 32px;
 }
 
-/* Education page: its own (tighter) version of the same idea, not shared
-   with .domain-sections-wrap - Education/Certifications only hold a
-   couple of short entries each, so even the reduced domain-page padding
-   above still reads as too much empty space around so little content. */
+/* Education page spacing */
 .education-sections-wrap {
   position: relative;
   z-index: 2;
@@ -60,9 +51,7 @@
   padding-bottom: 12px;
 }
 
-/* Expertise table - auto-fit so this works whether there are 3 columns
-   (a template page) or 4 (the unified toolkit on index.html), without
-   needing a column count baked into the CSS. */
+/* Expertise table */
 .expertise-table {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -105,7 +94,7 @@
 }
 
 .project-card {
-  position: relative; /* anchors the stretched-link overlay */
+  position: relative;
   padding: 0;
   overflow: hidden;
   background: var(--background);
@@ -148,8 +137,7 @@
   font-size: 1.1rem;
 }
 
-/* Makes the whole card clickable (goes to the write-up), while the buttons
-   in .project-links stay independently clickable on top of the overlay. */
+/* Whole card links to the write-up */
 .stretched-link::after {
   content: "";
   position: absolute;
